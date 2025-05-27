@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <style>
+      button {
+        width: 60px;
+        height: 50px;
+        border-radius: 15px;
+        background-color: rgb(237, 201, 201);
+        font-size: 30px;
+        border: none;
+        color: black;
+        transition: 0.2s ease;
+      }
+      .container {
+        background-color: #dbbaba;
+        width: 300px;
+        height: fit-content;
+        border-radius: 20px;
+      }
+      
+      .bb {
+        color: rgb(215, 49, 49);
+      }
+      button:hover{
+        transform: scale(0.9);
+      }
+      #rbox {
+        width: 295px;
+        height: 60px;
+        font-size: 40px;
+border: none;
+        color: rgb(5, 5, 5);
+        background-color: rgb(207, 175, 175);
+        text-align: right;
+        margin-top: 50px;
+      }
+      #buttons {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(4, 1fr);
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      #ee {
+        color: white;
+        background-color: rgb(215, 49, 49);
+      }
+
+      #nnn {
+        display: none;
+        margin-top: 5px;
+        gap: 5px;
+      }
+      #smth {
+        width: 60px;
+        font-size: 10px;
+        height: 45px;
+        box-shadow: none;
+        border-radius: 10px;
+        margin-right: 10px;
+      }
+      #noty {
+        width: 250px;
+        border-radius: 10px;
+        border: none;
+        height: 40px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <input type="text" readonly id="rbox" /> <br /><br />
+      <div id="buttons">
+        <button onclick="remove()" id="rv" class="bb">C</button>
+        <button onclick="del()" id="dl" class="bb">X</button>
+        <button onclick="pw()" class="bb">xⁿ</button>
+        <button onclick="add('+')" class="bb">+</button>
+        <button onclick="add('9')">9</button>
+        <button onclick="add('8')">8</button>
+        <button onclick="add('7')">7</button>
+        <button onclick="add('-')" class="bb">-</button>
+        <button onclick="add('6')">6</button>
+        <button onclick="add('5')">5</button>
+        <button onclick="add('4')">4</button>
+        <button onclick="add('*')" class="bb">*</button>
+        <button onclick="add('3')">3</button>
+        <button onclick="add('2')">2</button>
+        <button onclick="add('1')">1</button>
+        <button onclick="add('/')" class="bb">/</button>
+        <button onclick="add('0')">0</button>
+        <button onclick="add('00')">00</button>
+        <button onclick="add('.')">.</button>
+        <button onclick="calculate()" id="ee">=</button>
+
+        <br />
+      </div>
+      <form id="nnn">
+        <input type="number" id="noty" placeholder="enter the damn exponent" />
+        <button type="button" id="smth" onclick="me()">calculate</button>
+      </form>
+    </div>
+    <br />
+
+    <script src="cal.js"></script>
+  </body>
+</html>
