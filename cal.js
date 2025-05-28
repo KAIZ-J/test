@@ -12,11 +12,11 @@ const nnn= document.getElementById("nnn");
     }
       
    function remove() {
- result.value = Number("") ;
+ result.value = "" ;
 }
 
     function del() {
-    result.value = Number(result.value.slice(0, -1));
+    result.value = result.value.slice(0, -1);
 }
   
   function pw(){
