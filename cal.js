@@ -20,7 +20,15 @@ const nnn= document.getElementById("nnn");
 }
   
   function pw(){
-    nnn.style.display="flex";
+    const nnn= document.getElementById("nnn");
+    if (nnn.style.display=="none") {
+      nnn.style.display="flex";
+      
+    } else {
+      nnn.style.display="none";
+      
+    }
+    
     
   }
   const noty = document.getElementById("noty");
