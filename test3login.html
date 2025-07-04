@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style>
+  *{
+    color: #303144;
+    
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #808DAC;
+    overflow-y: hidden;
+  }
+  .container {
+display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+    img{
+      width: 100px;
+      border-radius: 100px;
+      animation: tr 2.2s forwards;
+    }
+    input{
+      background-color: transparent;
+      border: none;
+      border-bottom: 2px solid #B9D0CF;
+      outline: none;
+      width: 300px;
+    }
+    .form{
+      padding: 20px;
+    }
+    .new{
+      color: white;
+    }
+    button{
+      border-radius: 20px;
+      border: none;
+      width: 60%;
+      height: 40px;
+    }
+    form , .new ,.j,button{
+      opacity: 0;
+      animation:aper 4s forwards;
+    }
+    @keyframes aper{
+      0%{
+      
+      }
+      40%{
+opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes tr {
+            0%{
+      transform: translateY(150px);
+      }
+      10%{
+        opacity: 0.5;
+      }
+      20%{
+        opacity: 0.3;
+      }
+      30% {
+  opacity: 0;
+}
+50%{
+        opacity: 0.8;
+      }
+      60%{
+        opacity: 0.5;
+      }
+      70% {
+  opacity: 0;
+}
+      
+      80%{
+        transform: translateY(150px);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+    .new span{
+      color: white;
+      
+    }
+    .new{
+      align-self: flex-end;
+    }
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+
+  <img src="assests/logo.png" alt="" />
+  <form action="">
+    <div class="form nm">
+    <span>Username</span> <br /><br /><br />
+      <input type="text">
+      </div>
+    <div class="form ps">
+    <span>Password</span> <br /><br /><br />
+  <input type="password">
+</div>
+  </form>
+  <div class="new">
+   <span>Forgot Password?</span>
+  </div> <br />
+  <button type="submit">Login</button><br />
+  <div style='display: flex;gap: 5px;' class="j">New user?<span style="color: white ;">Sign up</span></div>
+  </div>
+</body>
+
+</html>

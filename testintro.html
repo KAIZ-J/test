@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style>
+  body{
+    height: 100%;
+    overflow: hidden;
+  }
+    img{
+      width:100px;
+    }
+    .section{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    flex:0 0 100vw;
+    scroll-snap-align: start;
+  
+    }
+    .container {
+      display: flex;
+      overflow-x: auto;
+  width: 100vw;
+  scroll-snap-type: x mandatory;
+height: 100vh;
+scroll-behavior: smooth;
+    }
+    .s2 p {
+      max-width:350px;
+      
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    
+    <div class="section s1">
+      <img src="/atom.png" alt="" />
+      <h1>Atom tech center</h1>
+              <h1>
+          <br />
+          <span style="color: red">Tech </span> You Love.
+          <span style="color: red">Prices </span> You’ll Love More.
+        </h1>
+        <h5>
+          From phones to gaming gear, we’ve <br /> got the best gadgets—no wallet
+          pain.
+        </h5>
+    </div>
+    
+    <div class="section s2">
+        <h2>About<span> Atom Tech Center </span></h2>
+      <hr />
+      <p>
+        At Atom Tech Center, we’re passionate about connecting people with
+        powerful, reliable, and innovative tech. <br />
+        From phones and gadgets to must-have accessories, we bring the future to
+        your fingertips — fast, affordable, and hassle-free. We believe in more
+        than just selling tech — we help you experience it. Whether you're
+        upgrading your setup, replacing essentials, or gifting smart gear, Atom
+        is your trusted go-to.
+      </p>
+      <p>
+        <span>Power up with Atom </span>— simple, smart, and always in stock.
+      </p>
+      <hr />
+    </div>
+  </div>
+</body>
+
+</html>

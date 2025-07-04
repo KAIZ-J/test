@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style>
+  *{
+    font-family: monospace;
+  }
+    .container{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      background: linear-gradient(to bottom,#B2B4CA,#E4B5B4);
+      height:400px;
+      justify-content: center;
+      border-radius:20px;
+      width: 350px;
+    }
+    input{
+      width: 200px;
+      height:70px;
+      border: none;
+      border-radius:20px;
+    }
+    input[type="number"]{
+      color: darkblue;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bolder;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      margin:0;
+      background-color:#4C4E66 ;
+    }
+    #res{
+      width:200px;
+      overflow-y:auto;
+      height: 50px;
+      align-self: center;
+      border:2px solid;
+      text-align: center;
+      color: whitesmoke;
+      display:flex;
+      gap: 5px;
+      align-items: center;
+    
+    }
+    #res div{
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    #res span {
+    margin-left: auto;
+    margin-right: auto;
+    }
+    button{
+      padding: 10px;
+      border: none;
+      width: 70%;
+    }
+    form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+        #sm{
+      width:200px;
+      overflow-y:auto;
+      border:2px solid;
+      text-align: center;
+      color: whitesmoke;
+      height: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <br>
+  <form action="">
+  <div class="container">
+    <input type="number" id="A" placeholder="starting number" required>
+    <input type="number" id="lv" placeholder="upto what" required>
+    <input type="number" id="d" placeholder="by how much difference" required>
+        <input type="number" id="noterms" placeholder="how much terms" required>
+  </div> <br> <br /> 
+  <button type="button" id="cal" onclick="calll()">GENERATE SEQUENCE</button> <br /> </form>
+  <div id="res">
+    
+   <span>your sequence here </span> 
+  </div>
+  <br />
+  <div id="sm">
+    <br />
+    The Sum is
+  </div>
+  <script>
+   function calll(){
+const a = Number(document.getElementById("A").value);
+const lv = Number(document.getElementById("lv").value);
+const cc = Number(document.getElementById("d").value);
+const noterms = Number(document.getElementById("noterms").value);
+ const res = document.getElementById("res");
+      res.innerHTML="";
+      const sm = document.getElementById("sm");
+      sm.innerHTML="";
+let sum = 0;
+let loopCount =0;
+      for (let i = 0; ; i++) {
+  const term = a + i * cc;
+  sum += term;
+  loopCount++ ;
+  if (term > lv || loopCount > noterms) {
+    console.log("fonoshedd");
+    console.log(loopCount-1);
+    sum = sum - term;
+    break;
+   }
+  
+  const termbox = document.createElement("div");
+  termbox.innerHTML = term;
+res.appendChild(termbox);
+}
+sm.innerHTML =` The sum is ${sum}`;
+}
+  </script>
+</body>
+
+</html>
