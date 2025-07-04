@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kablammo|Sour Gummy|Atma|Poppins|Montserrat">
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgb(60, 64, 64);
+        font-family: Poppins;
+        margin: 0;
+      }
+      p{
+        color: white;
+      }
+      h1{
+        font-family: Sour gummy;
+        background:linear-gradient(to left,rgb(153, 61, 61),rgb(238, 204, 204));
+        background-clip: text;
+        color: transparent;
+      }
+      form {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      input,
+      label,
+      select {
+        width: 90%;
+        align-self: center;
+      }
+      label {
+        color: rgb(245, 245, 245);
+      }
+      #radio-buttons {
+        display: flex;
+   gap: 10px;
+        flex-direction: column;
+      }
+      #radio-buttons input {
+        width: 50px;
+        border: none;
+      }
+      #radio-buttons div{
+        width: 90%;
+        display: flex;
+        align-self: center;
+      }
+      input,
+      select {
+        height: 30px;
+        border-radius: 5px;
+        border: none;
+      }
+      textarea {
+        width: 90%;
+        align-self: center;
+        resize: vertical;
+        border-radius: 5px;
+        min-height: 100px;
+        max-height: 200px;
+      }
+      #checkboxes{
+       display: flex;
+       flex-direction: column;
+      }
+    #checkboxes div{
+display: flex;
+align-self: center;
+width: 90%;
+    }
+      #checkboxes input{
+        width: 25px;
+      }
+      button{
+        width: 50%;
+        border-radius: 5px;
+        border: none;
+        height: 30px;
+        font-family: Montserrat;
+      }
+      button:hover{
+        background-color: rgb(181, 166, 166);
+      }
+      #action-buttons{
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Atom tech Center</h1>
+    <p id="description">Thank you for taking time to fill out this form</p>
+    <form action="https://api.web3forms.com/submit" method="POST" id="survey-form">
+      <br /><br /><br />
+       <input type="hidden" name="access_key" value="3473a7fa-5dbd-4bfb-afec-387ad59549f8" />
+      <label for="name" id="name-label">Name</label> <br />
+      <input type="text" id="name" placeholder="Enter your name" /> <br />
+      <label for="email" id="email-label" required>Email</label> <br />
+      <input type="email" id="email" placeholder="Enter your Email" /> <br />
+      <label for="age" id="age-label">Age(optional)</label> <br />
+      <input
+        type="number"
+        id="age"
+        min="15"
+        max="40"
+        placeholder="Age"
+        value="15"
+      />
+      <br />
+      <label for="dropdown" id="dropdown"
+        >Select the option that describes you the most
+      </label>
+      <br />
+      <select name="" id="dropdown">
+        <option value="" hidden>Select Option</option>
+        <option value="">Buyer</option>
+        <option value="">Seller</option>
+        <option value="">Other</option>
+        <option value="">Prefer not to say</option>
+      </select>
+      <br />
+      <br />
+      <label>Would you recommend someone to buy from Atom tech center</label>
+      <br />
+      <div id="radio-buttons">
+        <div>
+            <input type="radio" name="choice" id="choice1" />
+            <label for="choice1">Absolutely</label>
+        </div>
+        <div>
+            <input type="radio" name="choice" id="choice2" />
+            <label for="choice2">Maybe...</label>
+        </div>
+        <div>
+            <input type="radio" name="choice" id="choice3" />
+            <label for="choice3">Am not sure</label>
+        </div>
+      </div>
+      <br />
+
+      <label for="dropdown" id="dropdown"
+        >Which feature of Atom tech Center is Your favorite
+      </label>
+      <br />
+    
+      <select name="" id="dropdown">
+        <option value="" hidden>Select Option</option>
+        <option value="">Accesibility</option>
+        <option value="">Flexibity</option>
+        <option value="">Price</option>
+        <option value="">Prefer not to say</option>
+        <option value="">Other</option>
+      </select>
+      <br />
+      
+      <label for="">Which feature you would like to see improved</label>
+      <br />
+      <div id="checkboxes">
+        <div>
+            <input type="checkbox" name="" id="cb1" value="Products" />
+            <label for="cb1">Products</label>
+        </div>
+        <div>
+            <input type="checkbox" name="" id="cb2" value="Price" />
+            <label for="cb2">Price</label>
+        </div>
+        <div>
+            <input type="checkbox" name="" id="cb3" value="Flexibilty" />
+            <label for="cb3">Flexibilty</label>
+        </div>
+        <div>
+            <input type="checkbox" name="" id="cb4" value="Accesibility" />
+            <label for="cb4">Accesibility</label>
+        </div>
+        <div>
+            <input type="checkbox" name="" id="cb5" value="Connectivity" />
+            <label for="cb5">Connectivity</label>
+        </div>
+        <div>
+            <input type="checkbox" name="" id="cb6" value="Management" />
+            <label for="cb6">Management</label>
+        </div>
+      </div>
+      <br />
+      <br />
+      <label for="comments">Any comments or Suggestion</label> <br />
+      <textarea
+        name=""
+        id="comments"
+        placeholder="Enter Your Comment here"
+      ></textarea>
+      <br />
+      <br />
+      <div id="action-buttons">
+        <button type="submit" id="submit">Submit</button>
+        <button type="reset" id="reset">Reset</button>
+      </div>
+    </form> <br>
+  </body>
+</html>

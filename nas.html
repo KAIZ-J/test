@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(157, 112, 112);
+        }
+        div{
+            display: flex;
+            width: 200px;
+           background: rgba(255, 255, 255, 0.09);
+           justify-content: space-evenly;
+          border-radius: 20px;
+        }
+        button{
+            background-color: transparent;
+            border: none;
+            width: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <button type="button" onclick="add()">+</button>
+        <p id="num">0</p>
+        <button type="button" onclick="sub()">-</button>
+    </div>
+    <span id="message"></span>
+    <script>
+        
+        function add(){
+            const mess = document.getElementById("message");
+            const numas = document.getElementById("num");
+        let toAdd = parseFloat(numas.innerText);
+            if(toAdd <= 9){
+              toAdd++;
+            numas.innerText=toAdd;
+            mess.innerHTML="";
+            } 
+            else if (toAdd==10){
+
+            }
+            else {
+                console.log("hi");
+                 
+            }
+        }
+         function sub(){
+            const mess = document.getElementById("message");
+            const numas = document.getElementById("num");
+        let toAdd = parseFloat(numas.innerText);
+            
+            if(toAdd > 0){
+              toAdd--;
+            numas.innerText=toAdd;
+            } 
+            else {
+                console.log("hi")
+            }
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+
+ html {
+     scroll-behavior: smooth;
+   }
+body{
+    font-family: Poppins;
+    display: flex;
+    width: 100%;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #121212;
+}
+.nav-link{
+    text-decoration: none;
+    color: #E0E0E0;
+    padding: 10px;
+    border-bottom: 1px solid #444444;
+ 
+}
+#navlinks{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  height: 80vh;
+  overflow-y: auto;
+  font-family: Montserrat;
+text-align: center;
+scrollbar-color: rgb(107, 102, 102) rgb(60, 60, 60);
+  scrollbar-width: thin;
+}
+#navbar{
+    width: 15%;
+    border-right: 2px solid #444444;
+     overflow: hidden;
+
+}
+#navbar header{
+    padding: 20px;
+   font-family: Sour gummy;
+   font-size: 2rem;
+   color: #B0B0B0;
+   text-align: center;
+   
+}
+main{
+    overflow-y: scroll;
+    height: 100vh;
+    width: 85%;
+    scrollbar-color: rgb(107, 102, 102) rgb(60, 60, 60);
+  scrollbar-width: thin;
+}
+main section {
+    padding: 20px;
+    color: #E0E0E0;
+    font-size: 1rem;
+}
+
+code {
+    background-color: #E0E0E0;
+    padding: 10px;
+    font-size: 0.7rem;
+    color:black ;
+    margin-left: 30px;
+}
+main section header{
+    color: #B0B0B0;
+    font-size: 1.5rem;
+    font-family: Sour gummy;
+}
+main section p ,code{
+    padding-left: 20px;
+}
+
+@media (max-width:1000px) {
+    body {
+      flex-direction: column;
+      margin: 0;
+    }
+    #navbar{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
+    #navlinks{
+        flex-direction: row;
+        overflow-x: auto;
+        padding-top: 0px;
+        height: 20vh;
+    }
+    main {
+        width: 100%;
+        overflow: none;
+    }
+    .nav-link{
+    text-decoration: none;
+    color: #E0E0E0;
+    padding: 10px;
+    white-space: nowrap;
+    border-bottom: none;
+ 
+}
+
+}

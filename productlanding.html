@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Kablammo|Sour Gummy|Atma|Poppins|Montserrat"
+    />
+    <style>
+      body {
+        font-family: Poppins;
+        background-color: #05191f;
+        color: #d5f0f9;
+      }
+    
+    #header img {
+        width: 100px;
+        margin-right: auto;
+      }
+      .nav-link {
+        text-decoration: none;
+        color: #84d5ed;
+        padding: 20px;
+      }
+      #nav-bar{
+        margin-left: auto;
+      }
+      #header{
+      
+        display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+ top: 0;
+  position: fixed;
+  width: 100%;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(10px);
+  height: 60px;
+  z-index: 99999;
+      }
+      .hero span {
+        color: #523de2;
+      }
+      .hero button {
+  border-radius: 10px;
+  border: none;
+  height: 30px;
+  width: 100px;
+  
+  animation: browse 1s infinite alternate;
+  transition: transform 5s ease-in-out;
+    background-color:#523de2 ;
+  color: antiquewhite;
+  
+}
+ .hero button:hover {
+background-color:#84d5ed;
+color: black;
+  
+}
+input{
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    outline: none;
+  border: none;
+  border-radius: 10px;
+}
+.hero form{
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 20px;
+}
+
+.hero {
+    padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+  flex-direction: column;
+  gap: 10px;
+}
+.products {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.products .card {
+  width: 200px;
+  height: 200px;
+  border: none;
+  background-color: #523de2;
+  border-radius: 20px;
+  transition: transform 0.2s ease , background-color 0.3s ease;;
+  color: white;
+ 
+}
+.products .cards-product a{
+text-decoration: none;
+}
+.products .cards-product {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  text-align: center;
+}
+
+
+.products .cards-product img {
+  width: 100px;
+  animation: rotation3d 5s infinite alternate;
+  transition: tranform 5s ease-in-out;
+}
+
+.products .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 0px 20px #162891;
+}
+/* trying to add 3d effects for some images  */
+@keyframes rotation3d {
+  0% {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+  50% {
+    transform: rotateY(180deg) rotateX(10deg);
+  }
+  100% {
+    transform: rotateY(-20deg) rotateX(-10deg);
+  }
+}
+
+@keyframes line {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 240px;
+  }
+}
+
+@keyframes line2 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 500px;
+  }
+}
+@keyframes browse {
+  0% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+/* about section  */
+.about h2 {
+  text-align: center;
+}
+
+.about p {
+  max-width: 650px;
+  text-align: justify;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+  margin-top: 200px;
+}
+
+
+
+hr {
+  width: 0;
+  animation: line2 10s infinite alternate;
+  background-color: #0d7da2;
+}
+/* scrolling  */
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+}
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+/* Contacts section  */
+.Contacts textarea {
+  resize: vertical;
+  max-height: 100px;
+}
+
+.contain-forms {
+  display: flex;
+  gap: 120px;
+  align-items: flex-start;
+  justify-content: center;
+  white-space: nowrap;
+  flex-wrap: wrap;
+}
+
+.Contacts h2,
+h5 {
+  text-align: center;
+}
+.Contacts a {
+  color: #89c3d7;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+.Contacts a:hover {
+  color: #32a2c8;
+}
+
+.Contacts input {
+  border-radius: 5px;
+  border: none;
+  height: 25px;
+}
+
+.Contacts button {
+  border-radius: 10px;
+  border: none;
+  height: 30px;
+  width: 80px;
+  background-color: #89c3d7;
+}
+.Contacts button:hover {
+  background-color: #32a2c8;
+  color: antiquewhite;
+}
+
+.footer {
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #523de2;
+}
+.Contacts {
+  margin-bottom: 100px;
+}
+@media (max-width: 768px) {
+
+
+  #nav-bar {
+    display: none;
+  }
+ 
+  .products .cards-product {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    text-align: center;
+  }
+
+  .about p {
+    max-width: 320px;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  hr {
+    width: 0;
+    animation: line 10s infinite alternate;
+  }
+  .contain-forms {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    flex-direction: column;
+  }
+
+  .footer {
+    font-size: 0.8rem;
+  
+  }
+  
+ 
+
+}
+
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      <img
+        src="/Circle_Monogram_Logo_-removebg-preview.png"
+        alt="logo"
+        id="header-img"
+      />
+      <nav id="nav-bar">
+        <a href="#hero" class="nav-link">Home</a>
+        <a href="#products" class="nav-link">Products</a>
+        <a href="#about" class="nav-link">About us</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </header>
+
+    <div class="section hero" id="hero">
+        <h2>
+          <span>Tech </span> You Love.
+          <span>Prices </span> You’ll Love More.
+        </h2>
+<form action="https://www.freecodecamp.com/email-submit" id="form">
+<input type="email" name="" id="email" placeholder="Your email here"> 
+<button type="submit">SEND</button>
+</form>
+<br><br><br>
+         <div id="video-container">
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/MBQBY9b6OAU?si=eedu1AcvWCYp8ct_"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        id="video"
+      ></iframe>
+    </div>
+      </div>
+   
+      <div class="section products" id="products">
+      <br><br>
+      <h2>Shop By category</h2>
+      <div class="cards-product">
+        <a href="">
+          <div class="card">
+            <br />
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzAwMDAwMCIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0xNzYsMTZIODBBMjQsMjQsMCwwLDAsNTYsNDBWMjE2YTI0LDI0LDAsMCwwLDI0LDI0aDk2YTI0LDI0LDAsMCwwLDI0LTI0VjQwQTI0LDI0LDAsMCwwLDE3NiwxNlpNNzIsNjRIMTg0VjE5Mkg3MlptOC0zMmg5NmE4LDgsMCwwLDEsOCw4djhINzJWNDBBOCw4LDAsMCwxLDgwLDMyWm05NiwxOTJIODBhOCw4LDAsMCwxLTgtOHYtOEgxODR2OEE4LDgsMCwwLDEsMTc2LDIyNFoiPjwvcGF0aD48L3N2Zz4="
+              alt=""
+            />
+            <h4>SmartPhones</h4>
+          </div>
+        </a>
+
+        <a href="">
+          <div class="card">
+            <br />
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzAwMDAwMCIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0yMzIsMTY4aC04VjcyYTI0LDI0LDAsMCwwLTI0LTI0SDU2QTI0LDI0LDAsMCwwLDMyLDcydjk2SDI0YTgsOCwwLDAsMC04LDh2MTZhMjQsMjQsMCwwLDAsMjQsMjRIMjE2YTI0LDI0LDAsMCwwLDI0LTI0VjE3NkE4LDgsMCwwLDAsMjMyLDE2OFpNNDgsNzJhOCw4LDAsMCwxLDgtOEgyMDBhOCw4LDAsMCwxLDgsOHY5Nkg0OFpNMjI0LDE5MmE4LDgsMCwwLDEtOCw4SDQwYTgsOCwwLDAsMS04LTh2LThIMjI0Wk0xNTIsODhhOCw4LDAsMCwxLTgsOEgxMTJhOCw4LDAsMCwxLDAtMTZoMzJBOCw4LDAsMCwxLDE1Miw4OFoiPjwvcGF0aD48L3N2Zz4="
+              alt=""
+            />
+            <h4>Laptops</h4>
+          </div>
+        </a>
+
+        <a href="">
+          <div class="card">
+            <br />
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzAwMDAwMCIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0yMDEuODksNTQuNjZBMTAzLjQzLDEwMy40MywwLDAsMCwxMjguNzksMjRIMTI4QTEwNCwxMDQsMCwwLDAsMjQsMTI4djU2YTI0LDI0LDAsMCwwLDI0LDI0SDY0YTI0LDI0LDAsMCwwLDI0LTI0VjE0NGEyNCwyNCwwLDAsMC0yNC0yNEg0MC4zNkE4OCw4OCwwLDAsMSwxMjgsNDBoLjY3YTg3LjcxLDg3LjcxLDAsMCwxLDg3LDgwSDE5MmEyNCwyNCwwLDAsMC0yNCwyNHY0MGEyNCwyNCwwLDAsMCwyNCwyNGgxNmEyNCwyNCwwLDAsMCwyNC0yNFYxMjhBMTAzLjQxLDEwMy40MSwwLDAsMCwyMDEuODksNTQuNjZaTTY0LDEzNmE4LDgsMCwwLDEsOCw4djQwYTgsOCwwLDAsMS04LDhINDhhOCw4LDAsMCwxLTgtOFYxMzZabTE1Miw0OGE4LDgsMCwwLDEtOCw4SDE5MmE4LDgsMCwwLDEtOC04VjE0NGE4LDgsMCwwLDEsOC04aDI0WiI+PC9wYXRoPjwvc3ZnPg=="
+              alt=""
+            />
+            <h4>Audio</h4>
+          </div>
+        </a>
+
+        <a href="">
+          <div class="card">
+            <br />
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzAwMDAwMCIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0xNzYsMTEySDE1MmE4LDgsMCwwLDEsMC0xNmgyNGE4LDgsMCwwLDEsMCwxNlpNMTA0LDk2SDk2Vjg4YTgsOCwwLDAsMC0xNiwwdjhINzJhOCw4LDAsMCwwLDAsMTZoOHY4YTgsOCwwLDAsMCwxNiwwdi04aDhhOCw4LDAsMCwwLDAtMTZaTTI0MS40OCwyMDAuNjVhMzYsMzYsMCwwLDEtNTQuOTQsNC44MWMtLjEyLS4xMi0uMjQtLjI0LS4zNS0uMzdMMTQ2LjQ4LDE2MGgtMzdMNjkuODEsMjA1LjA5bC0uMzUuMzdBMzYuMDgsMzYuMDgsMCwwLDEsNDQsMjE2LDM2LDM2LDAsMCwxLDguNTYsMTczLjc1YS42OC42OCwwLDAsMSwwLS4xNEwyNC45Myw4OS41MkE1OS44OCw1OS44OCwwLDAsMSw4My44OSw0MEgxNzJhNjAuMDgsNjAuMDgsMCwwLDEsNTksNDkuMjVjMCwuMDYsMCwuMTIsMCwuMThsMTYuMzcsODQuMTdhLjY4LjY4LDAsMCwxLDAsLjE0QTM1Ljc0LDM1Ljc0LDAsMCwxLDI0MS40OCwyMDAuNjVaTTE3MiwxNDRhNDQsNDQsMCwwLDAsMC04OEg4My44OUE0My45LDQzLjksMCwwLDAsNDAuNjgsOTIuMzdsMCwuMTNMMjQuMywxNzYuNTlBMjAsMjAsMCwwLDAsNTgsMTk0LjNsNDEuOTItNDcuNTlhOCw4LDAsMCwxLDYtMi43MVptNTkuNywzMi41OS04Ljc0LTQ1QTYwLDYwLDAsMCwxLDE3MiwxNjBoLTQuMkwxOTgsMTk0LjMxYTIwLjA5LDIwLjA5LDAsMCwwLDE3LjQ2LDUuMzksMjAsMjAsMCwwLDAsMTYuMjMtMjMuMTFaIj48L3BhdGg+PC9zdmc+"
+              alt=""
+            />
+            <h4>Gaming</h4>
+          </div>
+        </a>
+
+        <a href="">
+          <div class="card">
+            <br />
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzAwMDAwMCIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0yMDgsMTI4YTc5Ljk0LDc5Ljk0LDAsMCwwLTMyLjctNjQuNDdsLTYuMjQtMzQuMzhBMTYsMTYsMCwwLDAsMTUzLjMyLDE2SDEwMi42OEExNiwxNiwwLDAsMCw4Ni45NCwyOS4xNUw4MC43LDYzLjUzYTc5LjksNzkuOSwwLDAsMCwwLDEyOC45NGw2LjI0LDM0LjM4QTE2LDE2LDAsMCwwLDEwMi42OCwyNDBoNTAuNjRhMTYsMTYsMCwwLDAsMTUuNzQtMTMuMTVsNi4yNC0zNC4zOEE3OS45NCw3OS45NCwwLDAsMCwyMDgsMTI4Wk0xMDIuNjgsMzJoNTAuNjRsMy45MSwyMS41NWE3OS43NSw3OS43NSwwLDAsMC01OC40NiwwWk02NCwxMjhhNjQsNjQsMCwxLDEsNjQsNjRBNjQuMDcsNjQuMDcsMCwwLDEsNjQsMTI4Wm04OS4zMiw5NkgxMDIuNjhsLTMuOTEtMjEuNTVhNzkuNzUsNzkuNzUsMCwwLDAsNTguNDYsMFpNMTIwLDEyOFY4OGE4LDgsMCwwLDEsMTYsMHYzMmgzMmE4LDgsMCwwLDEsMCwxNkgxMjhBOCw4LDAsMCwxLDEyMCwxMjhaIj48L3BhdGg+PC9zdmc+"
+              alt=""
+            />
+            <h4>Wearing</h4>
+          </div>
+        </a>
+
+        <a href="">
+          <div class="card">
+            <br />
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzAwMDAwMCIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0xOTIsMTM2YTgsOCwwLDAsMS04LDhoLTh2OGE4LDgsMCwwLDEtMTYsMHYtOGgtOGE4LDgsMCwwLDEsMC0xNmg4di04YTgsOCwwLDAsMSwxNiwwdjhoOEE4LDgsMCwwLDEsMTkyLDEzNlptLTg4LThINzJhOCw4LDAsMCwwLDAsMTZoMzJhOCw4LDAsMCwwLDAtMTZaTTI0MCw4OHY5NmExNiwxNiwwLDAsMS0xNiwxNkgzMmExNiwxNiwwLDAsMS0xNi0xNlY4OEExNiwxNiwwLDAsMSwzMiw3Mkg0OFY1NkExNiwxNiwwLDAsMSw2NCw0MEg5NmExNiwxNiwwLDAsMSwxNiwxNlY3MmgzMlY1NmExNiwxNiwwLDAsMSwxNi0xNmgzMmExNiwxNiwwLDAsMSwxNiwxNlY3MmgxNkExNiwxNiwwLDAsMSwyNDAsODhaTTE2MCw3MmgzMlY1NkgxNjBaTTY0LDcySDk2VjU2SDY0Wk0yMjQsMTg0Vjg4SDMydjk2SDIyNFoiPjwvcGF0aD48L3N2Zz4="
+              alt=""
+            />
+            <h4>Accessories</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="section about" id="about">
+        <br><br><br>
+      <h2>About<span style="color: #284f5c;"> Atom Tech Center </span></h2>
+      <hr />
+      <p>
+        At Atom Tech Center, we’re passionate about connecting people with
+        powerful, reliable, and innovative tech. 
+        From phones and gadgets to must-have accessories, we bring the future to
+        your fingertips — fast, affordable, and hassle-free. We believe in more
+        than just selling tech — we help you experience it. Whether you're
+        upgrading your setup, replacing essentials, or gifting smart gear, Atom
+        is your trusted go-to.
+      </p>
+      <p>
+        <span style="color: #284f5c;">Power up with Atom </span>— simple, smart, and always in stock.
+      </p>
+      <hr />
+    </div>
+<div class="section Contacts" id="contact">
+        <br> <br>
+      <h2>Get In Touch</h2>
+      <h5>Questions? Orders? We’re here for you.</h5>
+      <div class="contain-forms">
+        <div>
+          <p>Contact Information</p>
+          <ul>
+            <li>📧support@atomtech.com</li>
+            <br />
+            <li>📞 +252 94 686 84 56</li>
+            <br />
+            <li>📌Online Only!</li>
+          </ul>
+        </div>
+        <div>
+          <p>Send us A message!</p>
+          <form action="https://api.web3forms.com/submit" method="POST">
+            <input
+              type="hidden"
+              name="access_key"
+              value="3473a7fa-5dbd-4bfb-afec-387ad59549f8"
+            />
+            <label for="email">Email:</label> <br />
+            <input
+              type="email"
+              id="Name"
+              name="Email"
+              placeholder="John@gmail.com"
+              required
+            /><br /><br />
+            <label for="message">Messsage:</label> <br />
+            <textarea name="message" id="message" rows="1"></textarea> <br />
+
+            <button type="submit" id="sub">Submit</button>
+          </form>
+        </div>
+        <div>
+          <p>Follow us</p>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href=""><i class="fa-brands fa-youtube"></i></a>
+          <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+          <a href=""><i class="fa-brands fa-pinterest"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">Copyright &copy 2025; Made By Atom Tech Center</div>
+
+   
+  </body>
+</html>
