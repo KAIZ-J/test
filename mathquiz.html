@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math Quiz</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Kablammo|Sour Gummy|Atma|Poppins|Montserrat"
+    />
+    <style>
+      body {
+        font-family: Poppins;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        justify-content: center;
+        height: 100vh;
+        background-color: #110f19;
+      }
+      #start {
+        width: 200px;
+        height: 50px;
+        background-color: #206d82;
+        border: none;
+        border-radius: 20px;
+        color: #eff1ee;
+        font-family: poppins;
+      }
+
+      #start:hover{
+background-color: #4f6ed4;
+box-shadow: 0px 0px 20px #4f6ed4;
+      }
+      #restart {
+        width: 200px;
+        height: 50px;
+        background-color: #206d82;
+        border: none;
+        border-radius: 20px;
+        color: #eff1ee;
+        display: none;
+        font-family: poppins;
+      }
+      
+      #restart:hover{
+background-color: #4f6ed4;
+box-shadow: 0px 0px 20px #4f6ed4;
+      }
+      #container {
+         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+        flex-direction: column;
+        margin: 0;
+        align-items: center;
+        justify-content: center;
+        height: 40vh;
+        gap: 20px;
+        display: none;
+        background-color: #8b84fa;
+        color: #f3fae9;
+        border-radius: 0px 0px 20px 20px;
+        width: 250px;
+        margin-top: 100px;
+      }
+      nav{
+        position: absolute;
+        top: 50px;
+        display: flex;
+        color: black;
+        gap: 150px;
+        
+      }
+      nav div{
+        background-color: #b2a9cd;
+        padding: 20px;
+        border-radius: 0 0 20px 20px;
+        text-align: center;
+        font-size: 1.1rem;
+      }
+      input{
+        width: 200px;
+        height: 40px;
+        outline: none;
+        text-align: center;
+        font-family: poppins;
+        border-radius: 10px;
+        border: none;
+      }
+      #question {
+font-size: 2rem;
+color: black;
+font-weight: bolder;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+<div>Score<p id="score">0</p></div>
+<div>Time<p id="time">120s</p></div>
+    </nav>
+    <div id="container">
+      <div id="question">Question here</div>
+      <input type="number" id="answer" placeholder="your answer here"/>
+      
+      <div id="message">Analysis</div>
+      
+      
+    </div>
+    <button id="restart" onclick="location.reload()" type="button">Restart</button>
+    <button id="start" onclick="start()" type="button">Start game</button>
+
+    <script>
+      const nums = [1, 2];
+      for (let i = 3; i < 101; i++) {
+        nums.push(i);
+      }
+      const operators = ["+", "-", "*"];
+      const question = document.getElementById("question");
+      const restart = document.getElementById("restart");
+      const time = document.getElementById("time");
+      const mess = document.getElementById("message");
+      let num1i, num2i, string1, string2, op, opnum;
+      let score = 0;
+let timer = 20;
+let timeInterval;
+let gameStart=false;
+      function start() {
+      if(!gameStart){
+        gameStart = true;
+const container = document.getElementById("container");
+         timeInterval= setInterval(() => {
+        timer--;
+        time.innerHTML=`${timer}s`;
+        if(timer<10){
+            time.style.color="red";
+        }
+        if(timer<=0){
+    mess.innerHTML = "Time is up!";
+    time.innerHTML="0";
+      container.style.display = "none";
+      restart.style.display = "block";
+    return;
+  
+        }
+       }, 1000);
+      }
+        
+        const start = document.getElementById("start");
+        start.style.display = "none";
+        container.style.display = "flex";
+        num1i = Math.floor(Math.random() * 100);
+        num2i = Math.floor(Math.random() * 100);
+        opnum = Math.floor(Math.random() * 3);
+        string1 = nums[num1i].toString();
+        string2 = nums[num2i].toString();
+        op = operators[opnum];
+        question.innerHTML = `${string1} ${op} ${string2}`;
+      }
+
+      function main() {
+        let scorec = document.getElementById("score");
+        let userAnswer = Number(document.getElementById("answer").value);
+        if (op === "+") {
+          let answer = nums[num1i] + nums[num2i];
+          if (userAnswer === answer) {
+            mess.innerHTML = "Correct,continue";
+            score++;
+            timer = timer + 3;
+            scorec.innerHTML = score;
+            start();
+            document.getElementById("answer").value = "";
+            document.getElementById("answer").focus();
+          } else {
+            mess.innerHTML = "Try again";
+        
+          }
+        } else if (op === "*") {
+            let answer = nums[num1i] * nums[num2i];
+          if (userAnswer === answer) {
+            mess.innerHTML = "Correct,continue";
+            score++;
+             timer = timer + 3;
+            scorec.innerHTML = score;
+            start();
+            document.getElementById("answer").value = "";
+            document.getElementById("answer").focus();
+          } else {
+            mess.innerHTML = "Try again";
+           
+          }
+        } 
+        else if (op === "-") {
+            let answer = nums[num1i] - nums[num2i];
+          if (userAnswer === answer) {
+            mess.innerHTML = "Correct,continue";
+            score++;
+             timer = timer + 3;
+            scorec.innerHTML = score;
+            start();
+            document.getElementById("answer").value = "";
+            document.getElementById("answer").focus();
+
+          } else {
+            mess.innerHTML = "Try again";
+            
+          }
+        } 
+        else {
+          console.log("hi");
+        }
+      }
+      document.getElementById("answer").addEventListener("input",main);
+    </script>
+  </body>
+</html>

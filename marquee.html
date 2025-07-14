@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Kablammo|Sour Gummy|Atma|Poppins|Montserrat"
+    />
+    <style>
+      body {
+        font-family: poppins;
+      }
+    #outer{
+        display: flex;
+        gap: 20px;
+        overflow: hidden;
+        
+      }
+      #outer div{
+        width: 50px;
+        background-color: antiquewhite;
+        text-align: center;
+        animation:scrolltoleft infinite 3s linear;
+        
+      }
+@keyframes scrolltoleft {
+    0%{transform: translateX(0%);}
+    100%{
+        transform: translateX(-100%);
+    }
+}
+      </style>
+</head>
+<body>
+    <h1>this is test for sliding using marques</h1>
+    
+        <div id="outer"> 
+<div class="box">This</div>
+        <div class="box">is</div>
+        <div class="box">rep</div>
+        <div class="box">and</div>
+        <div class="box">smth</div>
+        <div class="box">show</div>
+        <div class="box">off</div>
+        <div class="box">the</div>
+        <div class="box">mar</div>
+        <div class="box">tag</div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B to Dc</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Kablammo|Sour Gummy|Atma|Poppins|Montserrat"
+    />
+    <style>
+      body {
+        font-family: Poppins;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        justify-content: center;
+        height: 100vh;
+        background-color: #110f19;
+      }
+      
+  
+      #container {
+         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+        flex-direction: column;
+        margin: 0;
+        align-items: center;
+        justify-content: center;
+        height: 60vh;
+        gap: 30px;
+        background-color: #8b84fa;
+        color: #f3fae9;
+        border-radius: 0px 0px 20px 20px;
+        width: 400px;
+        margin-top: 100px;
+        text-align: center;
+        display: flex;
+      }
+
+      input{
+        width: 200px;
+        height: 40px;
+        outline: none;
+        text-align: center;
+        font-family: poppins;
+        border-radius: 10px;
+        border: none;
+      }
+select{
+  width: 70%;
+  text-align: center;
+
+font-family: poppins;
+height: 40px;
+}
+    </style>
+  </head>
+  <body>
+    <nav>
+    <div id="container">
+      <select name="" id="select">
+        <option value="db">Decimal to Binary</option>
+        <option value="bd">Binary to Decimal </option>
+      </select>
+      <input type="number" id="input" placeholder="your numbers here" max="8"/>
+      <div id="result">Result</div>
+    </div>
+    <script>
+        function bToDec(){
+            const strr = document.getElementById("input").value;
+            const result = document.getElementById("result");
+           if(strr===""){
+              result.innerHTML="input can't be empty";
+              return;
+            }
+let input=Number(strr);
+            let str = input.toString();
+            let array = str.split("").reverse();
+            let intArr = array.map(Number);
+            let sum = 0 ;
+            for(let i=0;i<intArr.length;i++){
+                if(intArr[i]>1){
+                    result.innerHTML="0 and 1 only allowed";
+               return;
+                }
+                else  {  
+                     let term = (2 ** i) * intArr[i];
+                sum += term;
+                 result.innerHTML=sum;
+                }
+            }
+        }
+         function dToBin(){
+             let str = document.getElementById("input").value;
+            let result = document.getElementById("result");
+            let input = Number(str);
+            if(input<0 || input>255){
+              result.innerHTML="enter a valid non-negative and from 0-255";
+              return;
+            }
+            else if(str===""){
+              result.innerHTML="input can't be empty";
+              return;
+            }
+            let array = [];
+             for(let i=0;;i++){
+              if(input%2===0){
+                array.push(0);
+              }
+              else{
+                array.push(1);
+              }
+              if(input<=1) break;
+              input = Math.floor(input/2);
+            }
+            result.innerHTML=array.reverse().join("");
+           } 
+function work(){
+  const select = document.getElementById("select");
+  if(select.value==="bd"){
+bToDec();
+  }
+  else if(select.value==="db"){
+    dToBin();
+  }
+}
+        document.getElementById("input").addEventListener("input",work);
+        document.getElementById("select").addEventListener("change",work);
+        //         function rgb(r, g, b) {
+// const hexvalues = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F"];
+//   const first = [r, g ,b];
+//   let rValue = "";
+//   for(let i = 0;i<3;i++){
+//     let q = Math.floor(first[i]/16);
+//    let reminder = first[i] - (q * 16);
+//     if(first[i]<0){
+//       q = 0;
+//       reminder = 0;
+//     }
+//     else if(first[i]>255){
+//       q = 15;
+//       reminder = 15;
+//     }
+//     rValue += `${hexvalues[q]}${hexvalues[reminder]}`;
+//   }
+//   return "#" + rValue;
+// }
+    </script>
+  </body>
+</html>
