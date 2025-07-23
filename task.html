@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Quick Notes</title>
+    <script
+      src="https://kit.fontawesome.com/9603c04a31.js"
+      crossorigin="anonymous"
+    ></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Kablammo|Sour Gummy|Atma|Poppins|Montserrat"
@@ -11,17 +15,275 @@
     <style>
       body {
         font-family: Poppins;
+        background-color: rgb(254, 249, 248);
+        color: #0f0202;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        margin: 0;
+        
+      }
+      #create-task {
+        border-radius: 50px;
+        border: none;
+        padding: 10px;
+        width: 50px;
+        background-color: #e92929;
+        color: #fef9f8;
+        cursor: pointer;
+        height: 50px;
+        position: fixed;
+        bottom: 3rem;
+        right: 3rem;
+        transition: transform 0.3s ease;
+      }
+      dialog::backdrop{
+        backdrop-filter: blur(10px);
+         background-color: rgba(0, 0, 0, 0.3); 
+      }
+      dialog{
+        border-radius: 10px;
+      }
+      #create-task:hover {
+        transform: scale(1.1);
+        background-color: #5b60ee;
+      }
+      h1 {
+        text-align: center;
+        text-decoration: underline;
+      }
+      #task-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin: 0;
+        place-items: center;
+      }
+      @media (max-width: 700px) {
+        #task-container {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+
+      #task-container div {
+        padding: 10px;
+        width: 200px;
+        border-radius: 10px;
+        border: 2px solid #5b60ee;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(91, 96, 238, 0.1);
+        height: 200px;
+        text-wrap: balance;
+        text-align: center;
+      }
+      #action-buttons {
+        align-self: flex-end;
+      }
+      #action-buttons button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: #e92929;
+      }
+      #action-buttons button:nth-child(2) {
+        color: #5b60ee;
+      }
+       #action-buttons button:nth-child(1) {
+        color:#0f0202;
+      }
+      #form-input {
+        padding: 35px;
+        display: flex;
+        flex-direction: column;
+      }
+      #close-buttons {
+        top: 0.5rem;
+        position: absolute;
+        right: 1rem;
+      }
+      #close-buttons button {
+        background: transparent;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        color: #e92929;
+      }
+      #form-buttons {
+        bottom: 0.5rem;
+        position: absolute;
+        right: 2rem;
+      }
+      #form-buttons button {
+        font-family: Poppins;
+      }
+      textarea {
+        min-width: 200px;
+        min-height: 100px;
+        max-width: 300px;
+        max-height: 200px;
+        z-index: 999999;
+        font-family: montserrat;
+        outline: none;
+      }
+      input {
+        padding: 5px;
+        font-family: poppins;
+        outline: none;
+      }
+      .task-show{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        bottom: 0;
+        z-index: 9999;
+        background-color: #5b60ee;
+      }
+      .hidden{
+        display: none;
       }
     </style>
   </head>
   <body>
-    <div id="container">
-      <button type="button" id="create-task">Create new Task</button>
+    <h1>Quick Notes</h1>
+    <div class="task-show hidden" id="show">
+      <h1>lkfn</h1>
     </div>
+    <button type="button" id="create-task">
+      <i class="fa-solid fa-add fa-2x"></i>
+    </button>
+    <div id="task-container"></div>
+    <dialog id="form-dialog">
+      <form id="form-input">
+        <div id="close-buttons">
+          <button type="button" id="close-btn">
+            <i class="fa-solid fa-xmark fa-2x"></i>
+          </button>
+        </div>
+        <label for="title-input">Title:</label>
+        <input type="text" id="title-input" required /> <br />
+        <label for="date-input">Date:</label>
+        <input type="date" id="date-input" /> <br />
+        <label for="description-input">Description:</label>
+        <textarea id="description-input" required></textarea>
+        <div id="form-buttons">
+          <button type="submit" id="add-update">Add</button>
+          <button type="reset" id="reset-btn">Reset</button>
+        </div>
+      </form>
+    </dialog>
     <script>
-      const container = document.getElementById("container");
+      const show = document.getElementById("show");
+      const formInput = document.getElementById("form-input");
+      const formDialog = document.getElementById("form-dialog");
+      const taskContainer = document.getElementById("task-container");
       const createTask = document.getElementById("create-task");
-     
+      const titleInput = document.getElementById("title-input");
+      const dateInput = document.getElementById("date-input");
+      const descriptionInput = document.getElementById("description-input");
+      const addUpdate = document.getElementById("add-update");
+      const closeBtn = document.getElementById("close-btn");
+      let taskData = JSON.parse(localStorage.getItem("data")) || [];
+      let currentTask = {};
+      function reset() {
+        titleInput.value = "";
+        dateInput.value = "";
+        descriptionInput.value = "";
+        addUpdate.innerHTML = "Add";
+        formDialog.close();
+        currentTask = {};
+      }
+      closeBtn.addEventListener("click", reset);
+      createTask.addEventListener("click", function () {
+        formDialog.showModal();
+        titleInput.focus();
+      });
+
+      function container() {
+        taskContainer.innerHTML = "";
+        taskData.forEach(({ id, title, date, description }) => {
+          taskContainer.innerHTML += `<div id="${id}">
+            <span id="action-buttons">
+            <button type="button" onclick="showOff(this)"><i class="fa-solid fa-maximize fa-1x" onmouseover="beat(this)" onmouseout="nobeat(this)"></i></button>
+               <button type="button" onclick="editBtn(this)"><i class="fa-solid fa-pen fa-1x"></i></button>
+            <button type="button" onclick="delBtn(this)"><i class="fa-solid fa-trash fa-1x" onmouseover="wiggle(this)" onmouseout="stopwiggle(this)"></i></button>
+            </span>
+            <h2>${title}</h2>
+            <p>${date===""?"no date":date}</p>
+            </div>`;
+        });
+      }
+     function wiggle(em){
+      em.classList.toggle("fa-shake");
+     }
+     function stopwiggle(em){
+      em.classList.toggle("fa-shake");
+     }
+ function beat(em){
+      em.classList.toggle("fa-beat");
+     }
+     function nobeat(em){
+      em.classList.toggle("fa-beat");
+     }
+
+      function add() {
+        let theTask = {
+          id: `${titleInput.value.split(" ").join("-")}${Date.now()}`,
+          title: titleInput.value,
+          date: dateInput.value,
+          description: descriptionInput.value,
+        };
+        const arrayIndex = taskData.findIndex(
+          (item) => item.id === currentTask.id
+        );
+        if (arrayIndex === -1) {
+          taskData.unshift(theTask);
+        } else {
+          taskData[arrayIndex] = theTask;
+        }
+        localStorage.setItem("data", JSON.stringify(taskData));
+        container();
+        reset();
+      }
+      formInput.addEventListener("submit", function (e) {
+        e.preventDefault();
+        add();
+      });
+      function editBtn(element) {
+        let numArray = taskData.findIndex(
+          (item) => item.id === element.parentElement.parentElement.id
+        );
+        currentTask = taskData[numArray];
+        addUpdate.innerHTML = "Change";
+        addUpdate.id = "update";
+        titleInput.value = currentTask.title;
+        dateInput.value = currentTask.date;
+        descriptionInput.value = currentTask.description;
+        formDialog.showModal();
+        localStorage.setItem("data", JSON.stringify(taskData));
+      }
+      function delBtn(elem) {
+        let numArray = taskData.findIndex(
+          (item) => item.id === elem.parentElement.parentElement.id
+        );
+        taskData.splice(numArray, 1);
+        elem.parentElement.parentElement.remove();
+        localStorage.setItem("data", JSON.stringify(taskData));
+      }
+      function showOff(elem){
+        let numArray = taskData.findIndex(
+          (item) => item.id === elem.parentElement.parentElement.id
+        );
+        currentTask = taskData[numArray];
+        let {title,date,description} = currentTask;
+        show.innerHTML=`<h1>${title}</h1>
+            <p>${date}</p>
+            <p>${description}</p>`;
+            show.classList.toggle("hidden");
+      }
+      document.addEventListener("DOMContentLoaded", container);
     </script>
   </body>
 </html>
