@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        }
+        #outer{
+            width: 300px;
+            border-radius: 30px;
+            border: 3px solid rgb(0, 0, 0) ;
+            height: 70px;
+            overflow: hidden;
+            rotate: 180deg;
+        }
+        #outer:hover #inner{
+            width: 100%;
+            background:linear-gradient(to right,lightcoral,teal);
+            animation: fill 0.5s forwards;
+        }
+        @keyframes fill{
+            0%{
+                height: 0;
+            }
+            100%{
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <div id="inner"></div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded",function(){
+            prompt("I need your name");
+        });
+        function trial(){
+        let array = [];
+        for(i=1;i<=100;i++){
+array.push(i);
+        };
+        for(z=0;z<array.length;z++){
+            if(array[z]%3===0 && array[z]%5===0){
+                array[z]="FizzBuzz";
+            }
+            else if(array[z]%3===0 && array[z]%5!==0){
+                array[z]="Fizz";
+            }
+            else if(array[z]%3!==0 && array[z]%5===0){
+                array[z]="Buzz";
+            }
+            else{
+                array[z]=array[z];
+            }
+            
+        }
+        return array;
+        }
+    </script>
+</body>
+</html>

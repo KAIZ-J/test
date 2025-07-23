@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B to Dc</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Kablammo|Sour Gummy|Atma|Poppins|Montserrat"
+    />
+    <style>
+      body {
+        font-family: Poppins;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        justify-content: center;
+        height: 100vh;
+        background-color: #110f19;
+        flex-direction: column;
+        gap: 20px;
+      }
+    button{
+        padding: 20px;
+        font-family: poppins;
+ background-color: rgb(255, 255, 255,0.1);
+        color: rgb(255, 255, 255,1);
+        border: 1px solid;
+        border-radius: 5px;
+      cursor: pointer;
+
+    }
+    </style>
+  </head>
+  <body>
+      <button type="button" onclick="change()">Change backround color random</button> 
+      <div >
+<span>hex value: <span id="hexvalue"></span></span>
+      </div>
+
+    <script>
+        function change(){
+            const body =document.body;
+            const hex = document.getElementById("hexvalue");
+            let array = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"];
+            let randomColor = "#";
+            for(let i=0;i<6;i++){
+                let randomindex = Math.floor(Math.random()*16);
+               randomColor +=`${array[randomindex]}`;
+            }
+            hex.innerText=randomColor;
+            body.style.backgroundColor=randomColor;
+        }
+    </script>
+  </body>
+</html>

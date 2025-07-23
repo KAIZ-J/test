@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>palindrome</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Kablammo|Sour Gummy|Atma|Poppins|Montserrat"
+    />
+    <style>
+      body {
+        font-family: Poppins;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        justify-content: center;
+        height: 100vh;
+        background-color: #110f19;
+        flex-direction: column;
+         color: #f3fae9;
+         gap: 10px;
+      }
+      
+  
+      #container {
+         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        gap: 30px;
+        background-color: #8b84fa;
+        border-radius: 0px 0px 20px 20px;
+        text-align: center;
+        display: flex;
+        padding: 30px;
+      }
+
+      input{
+        width: 200px;
+        height: 40px;
+        outline: none;
+        text-align: center;
+        font-family: poppins;
+        border-radius: 10px;
+        border: none;
+      }
+      button{
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        font-family: poppins;
+      }
+#description{
+    font-size: 0.9rem;
+    text-wrap: balance;
+text-align: center;
+}
+    </style>
+  </head>
+  <body>
+    <h1>Palindrome Checker</h1>
+    <div id="container">
+      
+      <div id="hold">
+          <input type="text" id="input" placeholder="your word here" />
+          <button type="button" id="checker">Check</button>
+      </div>
+      <div id="result">Result</div>
+    </div>
+    <div id="description">
+        <p>A palindrome is a word, phrase, name, or number that reads the same forward or backward (e.g., noon, 1001).</p>
+    </div>
+    <script>
+       const message = document.getElementById("result");
+       function clean(str){
+        let regex = /[a-zA-Z0-9]/g;
+        return str.match(regex).map(letter => letter.toLowerCase()).join("");
+       }
+       function reverse(str){
+        return str.split("").reverse().join("");
+       }
+       function main(str){
+        let original = clean(str);
+        let reversed = reverse(original);
+        if(original===reversed){
+message.innerHTML=`${str} is a palindrome`;
+        }
+        else{
+            message.innerHTML=`${str} is not a palindrome`;
+        }
+       }
+       document.getElementById("checker").addEventListener("click",function(){
+        const input = document.getElementById("input").value;
+        if(input===""){
+            alert("Please enter a value");
+            let str = prompt("I need a value");
+            main(str);
+        }
+        else{
+main(input);
+        }
+        
+       })
+       function shuffle(array){
+let randomArray = [];
+let copy = array;
+for(let z=0;;z++){
+let j = Math.floor(Math.random()*array.length);
+if(!randomArray.includes(j)){
+    randomArray.push(j);
+}
+if(randomArray.length===array.length) break;
+}
+for(let i=0;i<array.length/2;i++){
+let term = array[i];
+    array[i]=array[randomArray[i]]
+array[randomArray[i]]=term;
+}
+return array;
+       }
+    </script>
+  </body>
+</html>

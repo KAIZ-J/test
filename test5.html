@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calorie</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Kablammo|Sour Gummy|Atma|Poppins|Montserrat"
+    />
+    <style>
+      body {
+        font-family: Poppins;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 100px;
+        background-color: #05191f;
+         color: #d5f0f9;
+      }
+      #selection button {
+  border-radius: 10px;
+  border: none;
+  height: 30px;
+  width: 200px;
+  transition: transform 5s ease-in-out;
+    background-color:#523de2 ;
+  color: antiquewhite;
+  
+}
+ #selection button:hover {
+background-color:#84d5ed;
+color: black;
+  
+}
+      #total{
+    height: 30px;
+    width: 250px;
+    text-align: center;
+    outline: none;
+  border: none;
+  border-radius: 5px;
+}
+      #container .div {
+        border: 2px solid rgb(155, 155, 186);
+        width: 90%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      #container {
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+      }
+      .box {
+        border: 1px solid rgb(155, 155, 186);
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      #selection {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+      }
+      #selection select {
+        width: 20%;
+        text-align: center;
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Calorie calculator</h1>
+    <div id="container">
+      <div><input type="number" placeholder="Calories Budget" id="total" /></div>
+      <fieldset id="break" class="div"><legend>Breakfast</legend></fieldset>
+      <fieldset id="lunch" class="div"><legend>Lunch</legend></fieldset>
+      <fieldset id="dinner" class="div"><legend>Dinner</legend></fieldset>
+      <fieldset id="snack" class="div"><legend>Snack</legend></fieldset>
+    </div>
+    <div id="selection">
+      <button type="button" onclick="add()">Add entry</button>
+      <select name="" id="food">
+        <option value="breakf">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+        <option value="snack">Snack</option>
+      </select>
+    </div>
+    <div id="calculation">
+      <button id="cal" onclick="cal()">Calculate</button>
+      <button>Clear</button>
+    </div>
+    <div id="message"></div>
+    <script>
+      const breakf = document.getElementById("break");
+      const lunch = document.getElementById("lunch");
+      const dinner = document.getElementById("dinner");
+      const snack = document.getElementById("snack");
+      let ids = [breakf, lunch, dinner, snack];
+      let idstring = [
+        { name: "breakf", value: 1 },
+        { name: "lunch", value: 1 },
+        { name: "dinner", value: 1 },
+        { name: "snack", value: 1 },
+      ];
+      const foodselect = document.getElementById("food");
+      function add() {
+        let neww = document.createElement("div");
+        neww.classList.add("box");
+        for (let i = 0; i < ids.length; i++) {
+          if (foodselect.value === idstring[i].name) {
+            neww.innerHTML = `<h3>Entry ${idstring[i].value} </h3> <div><label>Entry ${idstring[i].value} food name: </label><input type="text"> </div><div> <label>Entry ${idstring[i].value} food calorie: </label><input type="number" class="item"></div>`;
+            idstring[i].value += 1;
+            ids[i].append(neww);
+          }
+        }
+      }
+
+      function cal() {
+        const totalstring = document.getElementById("total").value;
+        let total = Number(totalstring);
+        const mess = document.getElementById("message");
+        if (totalstring === ""  || total<=0) {
+            mess.innerHTML="enter valid budget";
+            return;
+        }
+        let sum = 0;
+        const items = document.querySelectorAll(".item");
+        items.forEach((t) => {
+          if(t.value===""){
+            mess.innerHTML="there are some empty inputs";
+            return;
+          }
+          else{
+            sum += Number(t.value);
+          }
+            
+        });
+        if (total > sum) {
+          mess.innerHTML = `There is around ${
+            total - sum
+          }calories to eat for ya.`;
+        } else if (sum > total) {
+          mess.innerHTML = `Woah,you sure are hungry you ate ${
+            sum - total
+          }calories than your total`;
+        } else if (sum === total) {
+          mess.innerHTML = "that's just perfect!!";
+        }
+        mess.innerHTML+=`the total calories you ate is ${sum}`;
+      }
+      document.getElementById("total").addEventListener("input", cal);
+     const items = document.querySelectorAll(".item");
+      items.forEach(tj => tj.addEventListener("input",cal));
+    </script>
+  </body>
+</html>
