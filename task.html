@@ -13,8 +13,17 @@
       href="https://fonts.googleapis.com/css?family=Kablammo|Sour Gummy|Atma|Poppins|Montserrat"
     />
     <style>
+      @font-face {
+  font-family: 'Chillax-Regular';
+  src: url('../fonts/Chillax-Regular.woff2') format('woff2'),
+       url('../fonts/Chillax-Regular.woff') format('woff'),
+       url('../fonts/Chillax-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
       body {
-        font-family: Poppins;
+        font-family: Chillax-Regular;
         background-color: #070b0d;
         color: #edf1f2;
         display: flex;
@@ -27,26 +36,28 @@
       #create-task {
         border-radius: 50px;
         border: none;
-        padding: 10px;
-        width: 50px;
+        
+        width: 0px;
         background-color: #5b60ee;
         color: #fef9f8;
         cursor: pointer;
-        height: 50px;
+        height: 0px;
         position: fixed;
         bottom: 3rem;
         right: 3rem;
         transition: scale 0.2s ease-in-out;
-        animation: op forwards 0.5s ease-in;
+        animation: op forwards 0.7s ease-in;
       }
       @keyframes op{
         0%{
-          opacity: 0;
-          transform: translateY(90px);
+          padding: 0px;
+          width:0px;
+          height: 0px;
         }
         100%{
-          opacity: 1;
-           transform: translateY(0);
+         padding: 10px;
+           width:50px;
+           height: 50px;
         }
       }
       dialog::backdrop{
@@ -56,7 +67,6 @@
       dialog{
         border-radius: 10px;
         border: #fef9f8 solid 2px;
-        box-shadow:0px 0px 200px #5b60ee;
       }
       #create-task:hover {
         scale: 1.1;
@@ -67,45 +77,35 @@
       }
       #task-container {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        row-gap: 10px;
-        column-gap: 10px;
-        margin: 0;
+        grid-template-columns: repeat(1, 1fr);
+        row-gap: 15px;
         place-items: center;
-      }
-      @media (max-width: 768px) {
-        #task-container {
-          grid-template-columns: repeat(1, 1fr);
-        }
       }
 
       #task-container div {
-        padding: 10px;
-        width: 200px;
+        padding: 15px;
+        width: 80%;
         border-radius: 10px;
-        border: 2px solid #5b60ee;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        border: 0.5px solid #5b60ee;
         background-color: rgb(91, 96, 238, 0.1);
-        height: 150px; 
+        height: 50px; 
         text-wrap: balance;
-        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
       }
-      #action-buttons {
-        align-self: flex-end;
+      #task-container div p{
+        font-size: 0.8rem;
+        color: gray;
       }
-      #action-buttons button {
+      #del-contain{
+        align-self: center;
+      }
+      #del-contain #del-button{
         background: transparent;
         border: none;
         cursor: pointer;
         color: #e92929;
-      }
-      #action-buttons button:nth-child(2) {
-        color: #5b60ee;
-      }
-       #action-buttons button:nth-child(1) {
-        color:#edf1f2;
       }
       #form-input {
         padding: 35px;
@@ -159,6 +159,10 @@
         align-items: center;
         justify-content: center;
       }
+       .task-show p{
+        text-align: center;
+        text-wrap: balance;
+       }
       .hidden{
         display: none;
       }
@@ -173,7 +177,6 @@
   <body>
     <h1 id="header">Quick Notes</h1>
     <div class="task-show hidden" id="show">
-      <h1>lkfn</h1>
     </div>
     <button type="button" id="create-task">
       <i class="fa-solid fa-add fa-2x"></i>
@@ -198,6 +201,7 @@
         </div>
       </form>
     </dialog>
+    <br>
     <script>
       const show = document.getElementById("show");
       const formInput = document.getElementById("form-input");
@@ -209,7 +213,7 @@
       const descriptionInput = document.getElementById("description-input");
       const addUpdate = document.getElementById("add-update");
       const closeBtn = document.getElementById("close-btn");
-      function dotdot(str){ if(str.split("").length>12){ return `${str.split("").splice(0,12).join("")}...`} else{return str} }
+      function dotdot(str,n){ if(str.split("").length>n){ return `${str.split("").splice(0,n).join("")}...`} else{return str} }
       let taskData = JSON.parse(localStorage.getItem("data")) || [];
       let currentTask = {};
       function reset() {
@@ -229,14 +233,15 @@
       function container() {
         taskContainer.innerHTML = "";
         taskData.forEach(({ id, title, date, description }) => {
-          taskContainer.innerHTML += `<div id="${id}">
-            <span id="action-buttons">
-            <button type="button" onclick="showOff(this)"><i class="fa-solid fa-maximize fa-1x" onmouseover="beat(this)" onmouseout="nobeat(this)"></i>k</button>
-               <button type="button" onclick="editBtn(this)"><i class="fa-solid fa-pen fa-1x"></i></button>
-            <button type="button" onclick="delBtn(this)"><i class="fa-solid fa-trash fa-1x" onmouseover="wiggle(this)" onmouseout="stopwiggle(this)"></i></button>
-            </span>
-            <h3>${dotdot(title)}</h3>
-            <p>${date===""?"no date":date}</p>
+          taskContainer.innerHTML += `<div id="${id}" onclick="showOff(this)" >
+            
+              <span>
+            <h>${dotdot(title,15)}</h>
+            <p>${date===""?dotdot(description,23):date}</p>
+                </span>          
+<span id="del-contain">
+ <button type="button" onclick="delBtn(this)" id="del-button"><i class="fa-solid fa-trash fa-1x" onmouseover="wiggle(this)" onmouseout="stopwiggle(this)"></i></button>
+              </span> 
             </div>`;
         });
       }
@@ -245,12 +250,6 @@
      }
      function stopwiggle(em){
       em.classList.toggle("fa-shake");
-     }
- function beat(em){
-      em.classList.toggle("fa-beat");
-     }
-     function nobeat(em){
-      em.classList.toggle("fa-beat");
      }
 
       function add() {
@@ -299,14 +298,15 @@
       }
       function showOff(elem){
         let numArray = taskData.findIndex(
-          (item) => item.id === elem.parentElement.parentElement.id
+          (item) => item.id === elem.id
         );
         currentTask = taskData[numArray];
         let {title,date,description} = currentTask;
         show.innerHTML=`
-        <button type="button" onclick="minimize(this)" id="minimize"><i class="fa-solid fa-minimize fa-1x"></i></button>
-        <h1>${title}</h1>
-        <p>${description.split(" ").join("").length} Characters | ${date}</p><hr>
+         <button type="button" onclick="editBtn(this)"><i class="fa-solid fa-pen fa-1x"></i></button>
+        <button type="button" onclick="minimize(this)" id="minimize"><i class="fa-solid fa-arrow-left fa-1x"></i></button>
+        <h4>${title}</h4>
+        <p>${description.split(" ").join("").length} Characters | ${date===""?"no date":date}</p><hr>
             <p>${description}</p>`;
             show.classList.toggle("hidden");
       }

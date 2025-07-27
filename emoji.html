@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #range{
+        width: 200px;
+        }
+        #range[type="range"]{
+            -webkit-appearance: none;
+        background:transparent;
+        border-radius: 20px;
+        }
+        #range[type="range"]::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            background: rgb(183, 79, 50);
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 3px solid white;
+        }
+        #range[type="range"]::-webkit-slider-runnable-track{
+            background: linear-gradient(to right,lightcoral,lightblue);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <input type="range" min="0" max="3" id="range">
+    <div id="text">😅</div>
+    <script>
+const range=document.getElementById("range")
+const text = document.getElementById("text")
+let array =["😀","😁","😅","😡"]
+range.addEventListener("input",function(){
+text.innerText=array[range.value]
+})
+    </script>
+</body>
+
+</html>
