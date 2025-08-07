@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration-Number</title>
+    <style>
+        @font-face {
+  font-family: 'Chillax-Regular';
+  src: url('../fonts/Chillax-Regular.woff2') format('woff2'),
+       url('../fonts/Chillax-Regular.woff') format('woff'),
+       url('../fonts/Chillax-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+body{
+    font-family: Chillax-Regular;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #010402;
+    color: #f0f9f4;
+}
+#container-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #748df6;
+    padding: 50px;
+    border-radius: 20px;
+    transition: box-shadow 0.5s ease;
+    box-shadow: 0px 0px 50px #01014e;
+}
+#container-input:hover{
+box-shadow: none;
+}
+#details-container{
+   display: none;
+flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ef117f;
+    padding: 50px;
+    border-radius: 20px;
+}
+form{
+display: flex;
+flex-direction: column;
+gap: 10px;
+align-items: center;
+}
+form input{
+    padding: 20px;
+    outline: none;
+    font-family: Chillax-regular;
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+}
+form button{
+    background-color: #970a91;
+    border: none;
+    padding: 15px;
+    font-size: 1rem;
+    width: 200px;
+    font-family: Chillax-regular;
+    border-radius: 20px;
+    transition: 0.3s ease;
+    cursor: pointer;
+    color: #f0f9f4;
+}
+form button:hover{
+    background-color: #ef117f;
+    scale: 1.08;
+}
+    </style>
+</head>
+<body>
+    <div id="container-input">
+<h1>Check Your Results</h1>
+<h4>Enter Your ID Below (12 Characters)</h4>
+<form id="form">
+    <input type="text" id="id-number" placeholder="xxxxxxxxxxxx" minlength="12" maxlength="12">
+    <button type="submit">Check</button>
+</form>
+    </div>
+    <div id="details-container" class="hidden"></div>
+    <script>
+const form = document.getElementById("form")
+const inputContainer = document.getElementById("container-input")
+const detailsContainer = document.getElementById("details-container")
+const input = document.getElementById("id-number")
+        const dataObj = [
+            {
+                id:"KJG3kjfh8y4h",
+                fullName:"Some guy unknown",
+                Grade:"11B",
+                Gender:"Male",
+                Age:16,
+                pass:true,
+            },
+            {
+                id:"hfjKHG8746hf",
+                fullName:"Random guy u",
+                Grade:"5F",
+                Gender:"Girl",
+                Age:11,
+                pass:false,
+            },
+            {
+                id:"RLWJ753bmgfs",
+                fullName:"Som nom own",
+                Grade:"8A",
+                Gender:"Boy",
+                Age:14,
+                pass:true,
+            }
+        ]
+        function contain(inputId){
+            inputContainer.style.display="none";
+            detailsContainer.style.display="flex";
+            
+            const regId  = dataObj.findIndex(item=>item.id===inputId);
+if(regId===-1){
+               detailsContainer.innerHTML=`<h1>No dAta Found</h1>`
+                return;    
+            }
+            const currentReg = dataObj[regId];
+            let {fullName,Grade,Gender,Age,pass} = currentReg;
+ detailsContainer.innerHTML=`<h1>${fullName}</h1>
+                            <p>Gender: ${Gender}</p>
+                            <p>Grade: ${Grade}</p>
+                            <p>Age: ${Age}</p>
+                            <p>Result: ${pass===true?"Passed✅":"Failed❌"}</p>`;
+        
+        }
+
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+         contain(input.value)
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test</title>
+    <link rel="stylesheet" href="/pico-main/css/pico.sand.min.css" />
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        select{
+            text-align: center;
+            width: 50%;
+        }
+        #input-container{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 10px;
+        }
+    #output{
+        padding: 25px;
+        border-radius: 10px;
+        background-color: #1c212c;
+        border: 2px solid #6f7887;
+        font-size: 1.5rem;
+    }
+    #action{
+        position: fixed;
+        bottom: 0;
+        right: 3rem;
+    }
+    #action button{
+    border-radius: 100px;
+    width: 60px;
+    height: 60px;
+    font-size: 1.3rem;
+    transition: scale 0.3s ease;
+    }
+    #action button:hover{
+        scale: 1.2;
+    }
+    
+    </style>
+  </head>
+  <body><br>
+    <form id="form"> 
+      <div id="input-container">
+<input type="number" class="input"  value="0" /><input
+        type="number"
+        class="input" value="0"
+      /><input type="number" class="input" value="0" /><input
+        type="number"
+        class="input" value="0"
+      /><input type="number" class="input"  value="0"/>
+      <input type="number" class="input"  value="0"/>
+      </div>
+      <button type="submit">Sort</button>
+    </form>
+    <select name="" id="select">
+         <option value="inc" selected>Increasing</option>
+        <option value="dec" >Descending</option>
+       <option value="random">Random</option>
+    </select>
+    <div id="output">[ 0,0,0,0,0,0 ]</div>
+    <div id="action">
+        <button type="button" onclick="add()">+</button>
+        <button type="button" onclick="sub()">-</button>
+    </div>
+    <script>
+        const inputContainer=document.getElementById("input-container")
+        const select = document.getElementById("select")
+        const form =  document.getElementById("form")
+        const output =  document.getElementById("output")
+        function add(){
+            inputContainer.innerHTML+=`<input type="number" class="input"  value="0"/>`
+        }
+         function sub(){
+            inputContainer.lastChild.remove()
+        }
+       function shuffle(array){
+let randomArray = [];
+let copy = array;
+for(let z=0;;z++){
+let j = Math.floor(Math.random()*array.length);
+if(!randomArray.includes(j)){
+    randomArray.push(j);
+}
+if(randomArray.length===array.length) break;
+}
+for(let i=0;i<array.length/2;i++){
+let term = array[i];
+    array[i]=array[randomArray[i]]
+array[randomArray[i]]=term;
+}
+       }
+        function sorter(array,order){
+        if(order==="inc"){
+            array.sort((a,b)=>a-b)
+        }
+        else if(order==="dec"){
+            array.sort((a,b)=>b-a)
+        }
+        else if(order==="random"){
+            shuffle(array)
+        }
+        return array;
+       }
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+             const inputs =  document.querySelectorAll(".input")
+            let array =  [];
+                inputs.forEach(item=>array.push(item.value))
+                if(array.some(item=>item.toString()==="")){
+                    output.innerHTML="";
+                alert("input empty")
+                return;
+            }
+            output.innerHTML=`[ ${sorter(array,select.value)} ]`
+        })
+        
+    </script>
+  </body>
+</html>

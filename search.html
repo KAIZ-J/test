@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+        #contents div{
+            width: 60%;
+            height: 60px;
+           border-bottom: 1px solid;
+            text-align: center;
+        }
+        #contents{
+            display: flex;
+            flex-direction: column;
+        }
+        #container{
+            display: flex;
+            flex-direction: column;
+        }
+        input{
+            width: 60%;
+        }
+    </style>
+</head>
+<body> 
+<br> <br>
+<div id="container">
+     <input type="search" id="search">
+    <div id="contents">
+    </div>
+</div>
+    <br>
+    <script>
+const searchInput =  document.getElementById("search")
+const container = document.getElementById("contents")
+        const obj = [ "quasar", "muddle", "velvet", "flux", "crisp", "plume", "orbit", "dusk", "glyph", "hazel", "jigsaw", "ember", "whirl", "zeal", "fable", "glint", "spree", "mirth", "tide", "snare", "loom", "brisk", "hatch", "swoop", "nuzzle", "crag", "twine", "quirk", "glimmer", "sift", "vault", "glide", "spur", "trinket", "rift", "gleam", "swirl", "froth", "bluff", "trudge", "scruff", "echo", "shard", "drizzle", "latch", "wisp", "flicker", "hush", "grunt", "wobble", "scurry", "sketch", "puzzle", "nibble", "shrug", "prance", "sprout", "bramble", "sniffle", "chirp", "scowl", "grumble", "pebble", "clink", "ripple", "thump", "blaze", "twitch", "squawk", "glance", "whisk", "gobble", "squiggle", "swish", "pluck", "shuffle", "hurdle", "grin", "scuff", "blurt", "twirl", "glisten", "trickle", "wiggle", "clash", "skitter", "clamp", "rattle", "sprawl", "clump", "glow", "dart", "swoosh", "tangle", "snap", "bloop", "lurch", "fumble", "twang", "gnash" ];
+        function contain(array){
+            container.innerHTML="";
+array.forEach(item=>{
+    container.innerHTML+=`<div>${item}</div>`
+})
+        }
+        function search(input){
+            let inputSplit = input.split("").length;
+            contain(obj.filter(item=>
+        item.split("").splice(0,inputSplit).join("").toLowerCase()===input.toLowerCase()
+            ))
+        }
+    searchInput.addEventListener("input",function(){
+        if(searchInput.value===""){
+           container.innerHTML=""; 
+     return;
+        }
+        search(searchInput.value)
+    })
+    </script>
+</body>
+</html>

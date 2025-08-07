@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+  font-family: 'Chillax-Regular';
+  src: url('../fonts/Chillax-Regular.woff2') format('woff2'),
+       url('../fonts/Chillax-Regular.woff') format('woff'),
+       url('../fonts/Chillax-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+body{
+    font-family: Chillax-Regular; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+#conatiner{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    text-align: center;
+}
+#conatiner details{
+    width: 400px;
+    height: 50px;
+    background-color: #ef117f;
+    max-width: 400px;
+    max-height: 200px;
+    transition: max-height 0.5s ease-in-out;
+    border-radius: 10px;
+    color: white;
+
+}
+#conatiner summary{
+color: black;
+}
+#conatiner summary::marker{
+color: whitesmoke;
+font-size: 1.3rem;
+cursor: pointer;
+}
+
+
+</style>
+</head>
+<body>
+    <h1>FAQs</h1>
+    <div id="conatiner">
+ <details>
+        <summary>How to Get More Coins?</summary>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia maiores ipsa id provident animi ad, quis minus nihil officiis quo?
+    </details>
+    <details>
+        <summary>Is there Probablility of losing all of your coins?</summary>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio a eum ipsum pariatur doloribus quas.
+    </details>
+    <details>
+        <summary>How to make Visually appealing good Videos?</summary>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur omnis officia id sed earum quidem ea quas ut voluptas, maxime repellendus dolorum dolor, provident consequuntur!
+    </details>
+    <details>
+        <summary>How does summary Tag work?</summary>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, doloremque.
+    </details>
+    <details>
+        <summary>Are there other good options than this?</summary>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores possimus facere cum suscipit inventore, deleniti aspernatur repudiandae sit fuga dignissimos iste impedit! Molestias animi hic mollitia, aut itaque eligendi unde!
+    </details>
+    </div><br>
+   
+</body>
+</html>
