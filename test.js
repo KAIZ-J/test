@@ -52,6 +52,7 @@ function range(array){
 let range = sortedArray[array.length-1]-sortedArray[0]
 return range;
 }
+
 function mode(array){
     let counter = {}
     for(let i=0;i<array.length;i++){
