@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <video id="vedio" onclick="pplay(this)" width="200px">
+        <source src="/assets/girl.MP4">
+    </video>
+    <input type="range" oninput="dof(this)" min="0" max="30" id="range">
+    <script>
+        const vedio = document.getElementById("vedio")
+        const range =  document.getElementById("range")
+function pplay(elem){
+    elem.play();
+    range.value=elem.currentTime
+   }
+   vedio.addEventListener("play",function(){
+    range.value=vedio.currentTime
+   })
+    </script>
+</body>
+</html>

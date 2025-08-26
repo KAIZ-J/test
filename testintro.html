@@ -18,9 +18,26 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-    flex:0 0 100vw;
+    flex: 0 0 100vw;
     scroll-snap-align: start;
   
+    }
+    .container::-webkit-scrollbar{
+      display: none;
+    }
+    .container::scroll-button(right){
+      content: '→';
+     background-color: rgb(13, 6, 47);
+     color: white;
+     border: none;
+     border-radius:15px;
+     width: 50px;
+     height: 45px; 
+     cursor: pointer;
+     position: fixed;
+     position-anchor: --container;
+     position-area: bottom;
+     translate: 100%;
     }
     .container {
       display: flex;
@@ -29,6 +46,7 @@
   scroll-snap-type: x mandatory;
 height: 100vh;
 scroll-behavior: smooth;
+ anchor-name: --container;
     }
     .s2 p {
       max-width:350px;

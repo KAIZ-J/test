@@ -72,3 +72,28 @@ function mode(array){
        function stats(array){
         return {"mean":mean(array),"median":median(array),"range":range(array),"variance":variance(array),"deviation":deviation(array)}
        }
+
+// get the first day of a month 
+  function firstDayDate(day,date){
+     let dayNames = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+    let nearNums = [1,8,15,22,29];
+    let subtracted = 0;
+    if(date>31 || date<1){
+      alert("NUH UH");
+      return;
+    }
+    if(nearNums.includes(date)){
+   return day;
+    }
+    for(let i=4;i>=0;i--){
+       if(date>nearNums[i]){
+   subtracted = date  - nearNums[i];
+    break;
+  }
+  
+    }
+      let indexOfDate = dayNames.indexOf(day);
+      let resultDate = indexOfDate-subtracted;
+      return resultDate<0?dayNames[resultDate+7]:dayNames[resultDate]
+  
+   }

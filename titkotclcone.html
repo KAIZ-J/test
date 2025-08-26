@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toktik clone</title>
+    <script src="https://kit.fontawesome.com/9603c04a31.js" crossorigin="anonymous"></script>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+            font-family: poppins;
+        }
+        nav{
+            background-color: rgb(46, 45, 45);
+            display: flex;
+            justify-content: space-evenly;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+            height: 8.5vh;
+          align-items: center;
+        }
+        nav div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: rgb(167, 165, 165);
+            cursor: pointer;
+            gap: 3px;
+            transform: translateY(3px);
+        }
+        nav div span{
+            font-size: .7rem;
+        }
+         nav div i{
+            scale: 1.3;
+        }
+    nav div:nth-child(3){
+        transform: translateY(-1px);
+        background-color: rgb(194, 27, 27);
+        width: 50px;
+        border: 2px solid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        align-content: center;
+        border-radius: 10px;
+    }
+    nav div:nth-child(3) i{
+scale: 1.3;
+color:white;
+    }
+     #container{
+            width: 100%;
+            overflow-x:scroll;
+            display: flex;
+            scroll-snap-type:x mandatory;
+            cursor: pointer;
+            border:none;
+            
+            anchor-name: --container;
+            gap: 5px;
+            height:89.99vh;
+        }
+        #container::-webkit-scrollbar{
+            display: none;
+        }
+        #container .page{
+            scroll-snap-align: start;
+           height: 100%;
+            width: 100%;
+            flex-shrink: 0;/*prolly plays the main role*/
+            color: rgb(194, 194, 210);
+        }
+        #home-page{
+            height: 100%;
+             overflow-y:scroll;
+             scroll-snap-type:y mandatory;
+             gap: 100px;
+             display: flex;
+             flex-direction: column;
+        }
+        #home-page::-webkit-scrollbar{
+            display: none;
+        }
+        #home-page .home-video{
+      flex-shrink: 0;
+        height: 100%;
+          scroll-snap-align: start;
+          display: flex;
+         flex-direction: column;
+        }
+     #home-page .home-video video{
+      width: 100%;
+      height: 90%;
+    flex-shrink: 0;
+     
+                }
+               
+     #home-page .home-video .action-btns{
+        width: 40px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+       gap: 15px; 
+        transform: translate(-10px,-270px);
+        align-self: end;
+        
+     }
+    #home-page .home-video .texts{
+    
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        transform:  translate(0px,-280px);
+    } 
+    #home-page .home-video img{
+        transform: translateY(-10px);
+    }
+     @media (max-width:400px) {
+
+                   #home-page .home-video video{
+                    object-fit: fill;
+                   }
+               
+                }
+                @keyframes bubble {
+                    0%{
+                        scale:1;
+                        transform: translateY(-5px);
+                    }
+                     100%{
+                        scale:1.5;
+                        transform: translateY(0px);
+                    }
+
+                }
+     #home-page .home-video .action-btns i{
+        scale: 1.65;
+     }
+     #home-page .home-video .action-btns div{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        
+     }
+     #home-page .home-video .action-btns div span{
+        font-size: 0.8rem;
+     }
+     .like-btn{
+        transition: color .2s ease;
+     }
+     .like-btn.liked{
+        color: red;
+     }
+     .fav-btn{
+        transition: color .2s ease;
+     }
+     .fav-btn.faved{
+        color: gold;
+     }
+     #profile-page{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+     }
+    </style>
+</head>
+<body> 
+    <nav>
+        <div id="home-page-btn" onclick="scrollToPage(this)" class="nav-btn">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </div>
+         <div id="friends-page-btn" onclick="scrollToPage(this)" class="nav-btn">
+           <i class="fa-solid fa-user-group"></i>
+            <span>Friends</span>
+        </div>
+        <div>
+            <i class="fa-solid fa-plus"></i>
+        </div>
+         <div id="inbox-page-btn" onclick="scrollToPage(this)" class="nav-btn">
+
+           <i class="fa-solid fa-inbox"></i>
+            <span>Inbox</span>
+        </div>
+         <div id="profile-page-btn" onclick="scrollToPage(this)" class="nav-btn">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </div>
+    </nav>
+    <div id="container">
+  <section class="page" id="home-page">
+
+  </section>
+  <section class="page" id="friends-page">
+<h5>i have absolutely no idea what to write here</h5>
+  </section>
+  <section class="page" id="inbox-page">
+<h1>inbox-page</h1>
+  </section>
+  <section class="page" id="profile-page">
+<h1>profile-page</h1>
+  </section>
+    </div>
+    <script>
+        let currentVideo = "video-0" ;
+       
+        const profilePage = document.getElementById("profile-page")
+        const homePage = document.getElementById("home-page");
+        const videosArray = [{id:0,src:"platinuim.MP4",likes:25,share:3,comment:["amzing stuff"],fav:1,userLiked:false},{id:1,src:"girl.MP4",likes:203,share:3,comment:[],fav:3,userLiked:false},{id:2,src:"nature.MP4",likes:988,share:30,comment:["nature","beatiful"],fav:15,userLiked:false}]
+        const users =[{name:"fazi",username:"fazi0123",pfp:"smiley",bio:"hey there this is a test page for profile😊",followers:61,following:5,likes:2939,videos:[],}]
+        function scrollToPage(elem){
+            document.getElementById(`${elem.id.split("-")[0]}-${elem.id.split("-")[1]}`).scrollIntoView({behavior:"instant"});
+            document.querySelectorAll(`.${elem.className}`).forEach(el=>{el.style.fontWeight="";
+                el.style.color="";
+                el.style.scale="1"
+            });
+            document.getElementById(`${elem.id}`).style.color="white";
+             document.getElementById(`${elem.id}`).style.fontWeight="bolder";
+              document.getElementById(`${elem.id}`).style.scale="1.02";
+        }
+         const observer = new IntersectionObserver((entries)=>{ 
+          entries.forEach((entry)=>{
+          if(entry.isIntersecting){
+          document.querySelectorAll(`.nav-btn`).forEach(el=>{el.style.fontWeight="";
+                el.style.color="";
+                el.style.scale=""
+            });
+            document.getElementById(`${entry.target.id}-btn`).style.color="white";
+             document.getElementById(`${entry.target.id}-btn`).style.fontWeight="bolder";
+              document.getElementById(`${entry.target.id}-btn`).style.scale="1.02";
+           }
+        
+         })
+         },{})
+        const cards = document.querySelectorAll('.page');
+         cards.forEach(el => observer.observe(el));
+        function addVideos(array){
+            homePage.innerHTML="";
+            let num = 0;
+            array.forEach(el=>{
+                homePage.innerHTML+=`
+                <div class="home-video" id="video-conatiner-${el.id}">
+    <video src="/assets/${el.src}" onclick="startPlaying(this)" id="video-${el.id}" class="vedio" autoplay playsinline loop></video>
+    <div class="action-btns">
+        <img src="/assets/tired.png" alt="" style="width:40px;anchor-name:--an-${el.id};border-radius:100px">
+          <i class="fa-solid fa-plus" onclick="follow(this)" style="position:fixed;position-anchor:--an-${num};position-area:center bottom;scale:0.8;transform:translateY(-30px);background-color:red;width:25px;height:25px;border-radius:20px;align-content:center;text-align:center"></i>
+       <div>
+<i class="fa-solid fa-heart like-btn" onclick="likeVideo(this)"></i>
+<span>${el.likes}</span>
+        </div>
+          <div>
+<i class="fa-solid fa-comment"></i>
+<span>${el.comment.length}</span>
+        </div>
+          <div>
+<i class="fa-solid fa-bookmark fav-btn" onclick="favVideo(this)"></i>
+<span>${el.fav}</span>
+        </div>
+          <div>
+<i class="fa-solid fa-share"></i>
+<span>${el.share}</span>
+        </div>
+            
+       <i class="fa-solid fa-ellipsis"></i>
+    </div>
+    <div class="texts">
+        <span style="font-weight:bolder">fancy suprise</span>
+        <span style="color:gray;font-weight:100;font-size:0.8rem">description of the video writtten here</span>
+        </div>
+</div>
+                `;
+                num++;
+            });
+            const videoObserver = new IntersectionObserver((entries)=>{ 
+       let visibles = entries.filter(el=>el.isIntersecting);
+       if(visibles.length===0){
+        document.getElementById("video-0").target.play()
+       }
+       console.log(visibles)
+ let mostVisblOne = visibles.sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0]
+       document.querySelectorAll("video").forEach(v => v.pause());
+      mostVisblOne.target.play()
+    
+   
+         },{})
+        const videoCards = document.querySelectorAll('.vedio');
+         videoCards.forEach(el => videoObserver.observe(el));
+           
+            
+        }
+        function addUserInfos(object){
+        profilePage.innerHTML=`
+        <div id="profile-nav" style="display:flex;justify-content: space-between;align-items:center;gap:250px">
+            <div id="group-1">
+                <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <div id="group-2" style="display:flex;gap:10px">
+                    <img src="/assets/cool.png" alt="" style="width:20px;height:20px;border-radius:100px;anchor-name:--pfpview">
+                      <i class="fa-solid fa-share"></i>
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+         <img src="/assets/${object.pfp}.png" alt="" style="width:90px;border-radius:100px;anchor-name:--image">
+         <i class="fa-solid fa-plus" style="position:fixed;position-anchor:--image;position-area:right bottom;scale:0.9;transform:translate(-40px,-30px);background-color:blue;width:30px;height:30px;border-radius:20px;align-content:center;text-align:center"></i>
+        <div style="text-align:center;anchor-name:--name">
+             <span>${object.name}</span>  <br>
+         <span style="color:gray;">@${object.username}</span>
+         <i class="fa-solid fa-pen" style="position:fixed;position-anchor:--name;position-area:right bottom;transform:translate(10px,-40px)"></i>
+         <i class="fa-solid fa-angle-down" style="position:fixed;position-anchor:--name;position-area:right center;transform:translate(-20px,-12px)"></i>
+            </div>
+        
+            <div style="display:flex;gap:30px;text-align:center;align-items:center;justify-content:center;transform:translateX(-10px)">
+                <div style="text-align:center">
+                    <span>${object.following}</span> <br>
+                    <span style="font-size:0.8rem;color:gray;">Following</span>
+                    </div> <hr style="height:20px">
+                       <div style="text-align:center">
+                    <span>${object.followers}</span><br>
+                    <span style="font-size:0.8rem;color:gray;">Followers</span>
+                    </div> <hr style="height:20px">
+                       <div style="text-align:center">
+                    <span>${object.likes}</span><br>
+                    <span style="font-size:0.8rem;color:gray;">Likes</span>
+                    </div>
+                 
+                </div>
+        <span style="font-size:0.9rem;;text-wrap:balance;text-align:center">${object.bio}</span> 
+      <div style="display:flex;gap:80px;transform:translateY(15px)">
+           <i class="fa-solid fa-bars" style="rotate:90deg"></i>
+           <i class="fa-solid fa-lock" ></i>
+           <i class="fa-solid fa-bookmark"></i>
+           <i class="fa-solid fa-heart"></i>
+        </div>
+        <hr style="width:100%;;color:rgb(20,20,20)">
+        `
+        }
+        addVideos(videosArray)
+        addUserInfos(users[0])
+        function startPlaying(elem){
+            document.querySelectorAll("video").forEach(el=>el.pause())
+           if(isVideoPlaying(elem)){
+            elem.pause()
+            return;
+           }
+           
+elem.play()
+           
+            
+        }
+        function likeVideo(elem){
+            elem.classList.toggle("liked")
+            elem.style.animation=`bubble .3s ease forwards`;
+             setTimeout(()=>{ elem.style.animation=``;},300)
+           let id = videosArray.findIndex(el=>el.id===Number(elem.parentElement.parentElement.parentElement.id.split("-")[2]))
+           let currentVideo = videosArray[id];
+           currentVideo.userLiked===false?currentVideo.userLiked=true:currentVideo.userLiked=false;
+           currentVideo.userLiked?currentVideo.likes+=1: currentVideo.likes-=1;
+            elem.parentElement.children[1].textContent=currentVideo.likes;
+        }
+        function favVideo(elem){
+            elem.classList.toggle("faved")
+        }
+        function follow(elem){
+            setTimeout(()=>{
+                elem.style.backgroundColor="white";
+ elem.style.color="red";
+ elem.className="fa-solid fa-check";
+            },300)
+            setTimeout(()=>{
+                elem.style.display="none"
+            },1500)
+           
+        }
+
+    </script>
+</body>
+</html>

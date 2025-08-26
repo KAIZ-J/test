@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card practice</title>
+    <style>
+        *{
+     font-family: poppins;
+        }
+        body{
+           
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           height: 90vh;
+        }
+       #container{
+            width: 300px;
+            overflow-x: scroll;
+            display: flex;
+            gap: 20px;
+            scroll-snap-type: x mandatory;
+            cursor: pointer;
+            border:none;
+            scroll-behavior: smooth;
+            anchor-name: --container;
+            scroll-marker-group:after;
+        }
+        #container::scroll-marker-group{
+            display: flex;
+            justify-content: center;
+            gap: .5em;
+        }
+       
+       #container::-webkit-scrollbar{
+        display: none;
+       }
+       #container::scroll-button(right),#container::scroll-button(left){
+     content: '→';
+     background-color: rgb(13, 6, 47);
+     color: white;
+     border: none;
+     border-radius:15px;
+     width: 50px;
+     height: 45px; 
+     cursor: pointer;
+     position: fixed;
+     position-anchor: --container;
+     position-area: right center;
+     translate: -50%;
+       }
+        #container::scroll-button(left){
+     content: '←';
+     position-area: left center;
+     translate: 50%;
+       }
+       #container::scroll-button(right):disabled,#container::scroll-button(left):disabled{
+        opacity: 0.5;
+        cursor: auto;
+       }
+        #container .card{
+            scroll-snap-align: start;
+           height: 300px;
+            width: 100%;
+            align-content: center;
+            text-align: center;
+            flex-shrink: 0;/*prolly plays the main role*/
+            background-color: rgb(50, 0, 108);
+            border-radius: 10px;
+            color: rgb(194, 194, 210);
+        }
+ .card::scroll-marker{
+            content: '';
+            background-color: rgb(156, 152, 152);
+            height: 1em;
+            width: 1em;
+            border-radius: 50%;
+        }
+        .card::scroll-marker:target-current{
+            background-color: blueviolet;
+        }
+        #dots{
+            display: flex;
+            justify-content: center;
+            gap: .5em;
+            position: fixed;
+            position-anchor: --container;
+            position-area: bottom;
+            transform: translateY(10px);
+        }
+        #dots span{
+            background-color: rgb(156, 152, 152);
+            height: .7em;
+            width: .7em;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color .03s ease;
+            
+        }
+         #dots span.show{
+        background-color: rgb(12, 77, 243);
+        }
+         
+    </style>
+</head>
+<body>
+    
+<div id="container">
+        <div class="card" id="0"><h1>Card 1</h1><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At magni consequuntur rerum placeat sapiente porro voluptatibus et dolorem quibusdam non.</p></div>
+        <div class="card" id="1"><h1>Card 2</h1><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, nobis! Laborum, corrupti sequi!</p></div>
+        <div class="card" id="2"><h1>Card 3</h1><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero, nulla?</p></div>
+        <div class="card" id="3"><h1>Card 4</h1><p>Lorem ipsum dolor sit amet consectetur.</p></div>
+        <div class="card" id="4"><h1>Card 5</h1><p>Lorem, ipsum.</p></div>
+    </div>
+<div id="dots">
+    
+</div>
+<script>
+    const container = document.getElementById("container")
+    const dots = document.getElementById("dots")
+    function addToContainer(){
+  dots.innerHTML="";
+        for(let i=0;i<5;i++){
+ dots.innerHTML+=`
+    <span id="dot-${i}" class="dot" onclick="scrollToDiv(this)"><span>
+     `
+        }
+        const observer = new IntersectionObserver((entries)=>{ 
+        entries.forEach((entry)=>{
+          let index = Number(entry.target.id);
+        if(entry.isIntersecting){
+        document.getElementById(`dot-${index}`).classList.add('show')
+         }
+         else{
+           document.getElementById(`dot-${index}`).classList.remove('show')
+         }
+       })
+       },{})
+      const cards = document.querySelectorAll('.card');
+       cards.forEach(el => observer.observe(el));
+      }
+      addToContainer()
+       function scrollToDiv(elem){
+     let index = elem.id.match(/[0-9]/g).join("");
+const targetElement = container.children[index];
+if (targetElement) {
+  targetElement.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'      
+  });
+}
+   }
+</script>
+</body>
+</html>

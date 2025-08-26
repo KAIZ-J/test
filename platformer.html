@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            align-items: end;
+            height: 90vh;
+        }
+        #platformer{
+            width: 50px;
+            height: 50px;
+            transition: transform .3s ease;
+            background-color: lightslategray;
+        }
+        #block{
+           width: 200px;
+           anchor-name: --container;
+           height: 100px;
+           background-color: wheat;
+        }
+    </style>
+</head>
+<body>
+    <div id="platformer">
+        
+    </div>
+    <div id="block"></div>
+    <script>
+        let go = 20;
+        const platformer = document.getElementById("platformer")
+        document.addEventListener("keypress",function(e){
+            if(e.key==="j"){
+   platformer.style.transform=`translate(${go}px,-100px)`
+            setTimeout(()=>{
+                platformer.style.transform=`translate(${go}px,30px)`
+            },400);
+            }
+         else if(e.key==="g"){
+            platformer.style.transform=`translateX(${go}px)`;
+            go+=20;
+         }
+        })
+    </script>
+</body>
+</html>

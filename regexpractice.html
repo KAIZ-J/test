@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Kablammo|Sour Gummy|Atma|Poppins|Montserrat"
+    />
+    <title>Pratice regex</title>
+    <style>
+        *{
+            font-family: poppins;
+            text-wrap: balance;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+            background-color: #1f2933;
+            color:#e5e9f0 ;
+        }
+        #phone-container{
+            width: 300px;
+            border: 5px solid;
+            height: 400px;
+            border-radius: 20px;
+            text-align: center;
+            align-content: center;
+            box-shadow: 0px 0px 10px ;
+            backdrop-filter: blur(50px);
+            background: transparent;
+        }
+        input{
+            outline: none;
+            padding: 10px;
+            background-color: #708090;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        button{
+            outline: none;
+            padding: 10px;
+            background-color:#e5e9f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer; 
+        }
+    </style>
+</head>
+<body>
+    <div id="phone-container">
+   <h3>US number Validator</h3>
+   <p>Phone Number :</p>
+   <input type="text" id="user-input"> <br> <br>
+   <button id="check-btn" onclick="check()" type="button">Check</button> 
+   <button type="reset" onclick="clearText()" id="clear-btn">Reset</button>
+   <br> <br> 
+   <div id="results-div">Result Here</div>
+    </div>
+    <script>
+        const phoneNumber = document.getElementById("user-input");
+        const resultMessage = document.getElementById("results-div")
+        const regex = /^1?\s?(\d{3}|\(\d{3}\))[\s-]?\d{3}[\s-]?\d{4}$/;
+
+        function check(){
+            if(phoneNumber.value===""){
+                alert("Please provide a phone number")
+                return;
+            }
+            resultMessage.innerHTML=regex.test(phoneNumber.value)?`Valid US number:<br> ${phoneNumber.value}`:`Invalid US number: <br> ${phoneNumber.value}`
+        }
+        document.addEventListener("keydown",function(e){
+            if(e.key==="Enter"){
+                check();
+            }
+        })
+        function clearText(){
+            resultMessage.innerHTML="";
+            phoneNumber.value=""
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        input{
+            padding: 10px;
+            anchor-name: --username;
+        }
+        #user-label{
+            position: fixed;
+            position-anchor: --username;
+            position-area: center;
+            touch-action: none;
+            transition: scale .3s ease,position-area .5s ease;
+        }
+        input:focus + #user-label{
+   position-area: top;
+     scale: 0.8;
+        }
+        input:empty + #user-label{
+            position-area: top;
+     scale: 0.8;
+        }
+    </style>
+</head>
+<body>
+    
+        <input type="text">
+        <p id="user-label">Username</p>
+   
+</body>
+</html>

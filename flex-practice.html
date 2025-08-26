@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cards{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-evenly;
+        }
+        .card{
+            flex-basis: 100px;
+            
+        }
+
+        .card img{
+            width: 100px;
+            cursor: pointer;
+        }
+        .order-first{
+            order: -1;
+        }
+        .order-middle{
+            order: 0;
+        }
+        .order-last{
+            order: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="cards">
+  <div class="card order-last"><img src="/assets/confused.png" alt=""></div>
+  <div class="card"><img src="/assets/cool.png" alt=""></div>
+  <div class="card"><img src="assets/cry.png" alt=""></div>
+  <div class="card"><img src="assets/rolling-eyes.png" alt=""></div>
+  <div class="card"><img src="/assets/sad.png" alt=""></div>
+  <div class="card"><img src="/assets/sleeping.png" alt=""></div>
+  <div class="card order-first"><img src="/assets/smile.png" alt=""></div>
+  <div class="card"><img src="/assets/surprised.png" alt=""></div>
+  <div class="card order-first"><img src="/assets/thinking.png" alt=""></div>
+  <div class="card"><img src="/assets/tired.png" alt=""></div>
+    <div class="card"><img src="/assets/smiley.png" alt=""></div>
+      <div class="card"><img src="/assets/tongue.png" alt=""></div>
+    </div>
+</body>
+</html>
